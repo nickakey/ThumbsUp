@@ -1,13 +1,13 @@
-# Thumbs Check
+# Thumbs Check +
 
-> An in-lecture thumbs checker.
+> Enhanced Lecture Companion App
 
 ## Team
 
-  - Rob St. Lezin
-  - Michael Clausen
-  - Shyan Kashani
-  - Chris Aaker
+  - Karina Dalca
+  - Jake Gober
+  - Nick Akey
+  - Gunpreet Singh
 
 ## Table of Contents
 
