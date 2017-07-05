@@ -26,6 +26,11 @@
   background-color: limegreen !important;
 }
 
+.btn-normal {
+  background-color: cornflowerblue !important;
+  color: white !important;
+}
+
 .btn-danger {
   background-color: red !important;
 }
