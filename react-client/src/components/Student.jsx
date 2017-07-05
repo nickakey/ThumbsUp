@@ -1,6 +1,7 @@
 import React from 'react';
 import Waiting from './Waiting.jsx';
 import ThumbInput from './ThumbInput.jsx';
+import MCQInput from './MCQInput.jsx';
 
 const io = require('socket.io-client');
 const socket = io();
@@ -37,11 +38,20 @@ class Student extends React.Component {
             givenName={this.props.givenName}
             lectureName={this.props.lectureName}
           />
-        : <ThumbInput
+        : this.props.questionType !== 'thumbs'
+        ? <ThumbInput
             countdown={this.props.countdown}
             thumbValue={this.props.thumbValue}
             changeThumbValue={this.props.changeThumbValue}
-          />}
+          />
+        : <MCQInput
+            countdown={this.props.countdown}
+            thumbValue={this.props.thumbValue}
+            changeThumbValue={this.props.changeThumbValue}
+            submitCount = {this.props.submitCount}
+            sendAnswer ={this.props.sendAnswer}
+          />
+          }
       </div>
     )
   }

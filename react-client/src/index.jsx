@@ -23,7 +23,9 @@ class App extends React.Component {
       thumbValue: 2,
       countdown: 30,
       givenName: '',
-      lectureName: ''
+      lectureName: '',
+      questionType: '',
+      submitCount:0
     }
   }
 
@@ -113,6 +115,7 @@ class App extends React.Component {
   startThumbsCheck (questionId) {
     this.setState({
       lectureStatus: 'checkingThumbs',
+      questionType:'thumbs',
       questionId: questionId
     }, this.setCountdownInterval)
   }
@@ -133,6 +136,42 @@ class App extends React.Component {
   }
 
   changeThumbValue (value) {
+    this.setState({
+      thumbValue: value
+    })
+  }
+
+  startMCQ (questionId) {
+    this.setState({
+      lectureStatus: 'checkingThumbs',
+      questionType:'mcq',
+      questionId: questionId
+    }, this.setCountdownInterval)
+  }
+
+   endMCQ () {
+    this.setState({
+      lectureStatus: 'lectureStarted',
+      questionId: ''
+    })
+  }
+
+  sendAnswer () {
+    this.setState({
+      submitCount: 1
+    })
+    console.log('sendAnswer got called' )
+  }
+
+  clearMCQ () {
+    this.setState({
+      lectureStatus: 'lectureStarted',
+      questionId: '',
+      countdown: 30
+    })
+  }
+
+  changeMCQ (value) {
     this.setState({
       thumbValue: value
     })
@@ -169,6 +208,8 @@ class App extends React.Component {
                   endLectureStudent={this.endLectureStudent.bind(this)}
                   givenName={this.state.givenName}
                   lectureName={this.state.lectureName}
+                  questionType={this.state.questionType}
+                  sendAnswer ={this.sendAnswer.bind(this)}
                 />
               : <Instructor
                   thumbValue={this.state.thumbValue}
@@ -177,13 +218,17 @@ class App extends React.Component {
                   startLecture={this.startLecture.bind(this)}
                   endLecture={this.endLecture.bind(this)}
                   startThumbsCheck={this.startThumbsCheck.bind(this)}
+                  startMCQ={this.startMCQ.bind(this)}
                   countdown={this.state.countdown}
                   changeThumbValue={this.changeThumbValue.bind(this)}
                   clearThumbsCheck={this.clearThumbsCheck.bind(this)}
                   view={this.state.view}
                   givenName={this.state.givenName}
                   lectureName={this.state.lectureName}
-                />}
+                  questionType={this.state.questionType}
+                  submitCount={this.state.submitCount}
+                />
+              }
         </div>
       </div>
     )

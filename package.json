@@ -41,5 +41,8 @@
   "bugs": {
     "url": "https://github.com/MagnanimousMonkeys77/MagnanimousMonkeys77/issues"
   },
-  "homepage": "https://github.com/MagnanimousMonkeys77/MagnanimousMonkeys77#readme"
+  "homepage": "https://github.com/MagnanimousMonkeys77/MagnanimousMonkeys77#readme",
+  "devDependencies": {
+    "react-btn-checkbox": "0.0.2"
+  }
 }
