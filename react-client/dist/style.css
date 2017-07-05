@@ -22,6 +22,12 @@
   margin-top: 24vh !important;
 }
 
+.smlbtn {
+  border-radius: 96px !important;
+  padding-top: 4px !important; padding-bottom: 4px !important;
+  width: 32vw !important;
+}
+
 .btn-success {
   background-color: limegreen !important;
 }

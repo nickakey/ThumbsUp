@@ -12,10 +12,8 @@ class Instructor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log('props', props);
     socket.on('averageThumbValue', (data) => {
       if (props.view === 'instructor') {
-        console.log('data', data);
         props.changeThumbValue(data.averageThumbValue);
       }
     });
