@@ -30,7 +30,8 @@ class MCQForm extends React.Component {
   }
 
   onQuestionSave() {
-    //Send data to the database
+    this.props.onQuestionSave();
+    //send the data to database
 
   }
 
@@ -69,7 +70,7 @@ class MCQForm extends React.Component {
         />
         <div
           className="smlbtn btn-sm btn-normal"
-          onClick={this.onQuestionSave.bind(this)}>
+          onClick={this.props.onQuestionSave.bind(this)}>
           Save Question
         </div>
       </div>

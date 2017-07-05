@@ -10,7 +10,6 @@ class LectureCreator extends React.Component {
       showInput: true,
       showAskForMCQ: false,
       showMCQForm: false,
-
     };
   }
 
@@ -49,7 +48,7 @@ class LectureCreator extends React.Component {
   }
 
   onQuestionSave (arg1) {
-    console.log('this is the arg in onquestionsave ', arg1);
+    //in here, change what is being shown 
   }
 
   render () {
