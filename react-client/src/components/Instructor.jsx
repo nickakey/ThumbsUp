@@ -1,5 +1,6 @@
 import React from 'react';
 import LectureStarter from './LectureStarter.jsx';
+import LectureCreator from './LectureCreator.jsx';
 import LectureButtons from './LectureButtons.jsx';
 import ThumbsChecker from './ThumbsChecker.jsx';
 import MCQChecker from './MCQChecker.jsx';
@@ -24,9 +25,17 @@ class Instructor extends React.Component {
     return (
       <div>
         {this.props.lectureStatus === 'lectureNotStarted'
-          ? <LectureStarter
-              startLecture={this.props.startLecture}
-            />
+          ? <div>
+              <div className="col-xs-6 text-center">
+                <LectureCreator
+                />
+              </div>
+              <div className="col-xs-6 text-center">
+                <LectureStarter
+                  startLecture={this.props.startLecture}
+                />
+              </div>
+            </div>
           : this.props.lectureStatus === 'lectureStarted'
           ? <LectureButtons
               lectureId={this.props.lectureId}

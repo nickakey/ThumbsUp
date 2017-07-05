@@ -31,8 +31,8 @@ class LectureStarter extends React.Component {
 
 	render () {
   	return (
-      <div className="row text-center">
-        <div className="col-xs-12 text-center">
+      <div>
+        <div>
           <input
             type="text"
             className="form-control"
@@ -41,9 +41,9 @@ class LectureStarter extends React.Component {
             onChange={this.handleChange.bind(this)}
           />
         </div>
-        <div className="col-xs-12 text-center">
+        <div className="col-xs-3 text-center">
         	<div
-            className="btn btn-lg btn-success"
+            className="btn btn-sm btn-success"
             onClick={this.onLectureStart.bind(this)}>
             Start Lecture
           </div>
