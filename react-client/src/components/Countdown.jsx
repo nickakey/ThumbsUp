@@ -11,7 +11,7 @@ import React from 'react';
 	 render() {
 	 	return (
 	    <div className="col-xs-12 text-center countdown">
-        {this.props.countdown}
+        Time Left: {this.props.countdown} 
       </div>
 	  )
 	 }

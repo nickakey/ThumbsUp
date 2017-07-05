@@ -2,6 +2,7 @@ import React from 'react';
 import LectureStarter from './LectureStarter.jsx';
 import LectureButtons from './LectureButtons.jsx';
 import ThumbsChecker from './ThumbsChecker.jsx';
+import MCQChecker from './MCQChecker.jsx';
 
 const io = require('socket.io-client');
 const socket = io();
@@ -32,13 +33,23 @@ class Instructor extends React.Component {
               startThumbsCheck={this.props.startThumbsCheck}
               endLecture={this.props.endLecture}
             />
-          : <ThumbsChecker
+          : this.props.questionType !== 'thumbs'
+          ? <ThumbsChecker
             startLecture={this.props.startLecture}
             lectureId={this.props.lectureId}
             countdown={this.props.countdown}
             thumbValue={this.props.thumbValue}
             clearThumbsCheck={this.props.clearThumbsCheck}
-          />}
+          />
+          : <MCQChecker
+            startLecture={this.props.startLecture}
+            lectureId={this.props.lectureId}
+            countdown={this.props.countdown}
+            thumbValue={this.props.thumbValue}
+            clearThumbsCheck={this.props.clearThumbsCheck}
+            submitCount={this.props.submitCount}
+          />
+        }
       </div>
     )
   }
