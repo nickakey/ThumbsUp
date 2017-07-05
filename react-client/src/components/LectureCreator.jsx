@@ -10,6 +10,14 @@ class LectureCreator extends React.Component {
       showInput: true,
       showAskForMCQ: false,
       showMCQForm: false,
+      showAddAnotherMCQ: false,
+      questionName: '',
+      questions: {
+        '1': '', 
+        '2': '', 
+        '3': '',
+        '4': ''
+      }
     };
   }
 
@@ -48,7 +56,23 @@ class LectureCreator extends React.Component {
   }
 
   onQuestionSave (arg1) {
-    //in here, change what is being shown 
+    //save the questions to the database
+    //AND will hide the questions element, and show the confirm question
+    this.setState({showMCQForm: false, showAddAnotherMCQ: true})
+  }
+
+  handleChange (form, event) {
+    event.persist()
+    if(form === 'questionName') {
+      this.setState({questionName: event.target.value});
+    }
+    else {
+      this.setState(()=>{
+        const newState = this.state;
+        newState.questions[form] = event.target.value;
+        return newState;
+      })
+    }
   }
 
   render () {
@@ -73,7 +97,11 @@ class LectureCreator extends React.Component {
             </div>
           : this.state.showMCQForm === true 
           ? <div>
-              <MCQForm onQuestionSave = {this.onQuestionSave.bind(this)}/>
+              <MCQForm questions = {this.state.questions} onQuestionSave = {this.onQuestionSave.bind(this)} handleChange = {this.handleChange.bind(this)}/>
+            </div>
+          : this.state.showAddAnotherMCQ === true
+          ? <div>
+              this is where we will list the existing MCQ forms and ask to add another
             </div>
           : <div></div>
         }
