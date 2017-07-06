@@ -100,7 +100,7 @@ class LectureCreator extends React.Component {
             />
           : this.state.showAskForMCQ === true 
           ? <div
-            className="btn btn-sm btn-success"
+            className="btn btn-success"
             onClick={this.onMCQAdd.bind(this)}>
             Add an MCQ
             </div>
@@ -122,9 +122,9 @@ class LectureCreator extends React.Component {
           : <div></div>
         }
         </div>
-        <div className="col-xs-3 text-center">
+        <div className="col-xs-12 center">
           <div
-            className="btn btn-sm btn-success"
+            className="center btn btn-left"
             onClick={this.onLectureSave.bind(this)}>
             Save Lecture
           </div>
