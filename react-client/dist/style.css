@@ -62,17 +62,7 @@
 .btn-normal {
   background-color: cornflowerblue !important;
   color: white !important;
-}
-
-.btn-normal {
-  background-color: cornflowerblue !important;
-  color: white !important;
   margin-top: 4vh !important;
-}
-
-.btn-normal {
-  background-color: cornflowerblue !important;
-  color: white !important;
 }
 
 .add-another {
@@ -84,6 +74,7 @@
 .col-xs-12 {
   margin: auto;
 }
+
 
 .btn-danger {
   background-color: red !important;

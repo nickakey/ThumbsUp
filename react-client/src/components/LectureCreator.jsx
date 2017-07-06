@@ -13,6 +13,7 @@ class LectureCreator extends React.Component {
       showAddAnotherMCQ: false,
       tempQuestionName: '',
       questionNames: [],
+      questionName: '',
       questions: {
         '1': '', 
         '2': '', 
@@ -33,6 +34,8 @@ class LectureCreator extends React.Component {
       // 1. Save the lecture to DB  
       this.setState({showInput: true, showAskForMCQ: false});  
     } 
+
+    // 1. Save the lecture to DB
     // 2a. Remove input box
     // 2b. Add button that asks if you would like to add multiple choice question
     this.setState({showInput: false, showAskForMCQ: true});
