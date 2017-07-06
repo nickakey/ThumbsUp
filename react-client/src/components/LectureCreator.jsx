@@ -11,7 +11,8 @@ class LectureCreator extends React.Component {
       showAskForMCQ: false,
       showMCQForm: false,
       showAddAnotherMCQ: false,
-      questionName: '',
+      tempQuestionName: '',
+      questionNames: [],
       questions: {
         '1': '', 
         '2': '', 
@@ -28,6 +29,9 @@ class LectureCreator extends React.Component {
   }
 
   onLectureSave () {
+    if(this.state.tempQuestionName){
+      
+    }
 
     // 1. Save the lecture to DB
     // 2a. Remove input box
@@ -58,13 +62,19 @@ class LectureCreator extends React.Component {
   onQuestionSave (arg1) {
     //save the questions to the database
     //AND will hide the questions element, and show the confirm question
-    this.setState({showMCQForm: false, showAddAnotherMCQ: true})
+    this.setState(()=>{
+      const newState = this.state;
+      newState.showMCQForm = false;
+      newState.showAddAnotherMCQ = true;
+      newState.questionNames.push(this.state.tempQuestionName);
+      return newState;
+    })
   }
 
   handleChange (form, event) {
     event.persist()
     if(form === 'questionName') {
-      this.setState({questionName: event.target.value});
+      this.setState({tempQuestionName: event.target.value});
     }
     else {
       this.setState(()=>{
@@ -101,7 +111,14 @@ class LectureCreator extends React.Component {
             </div>
           : this.state.showAddAnotherMCQ === true
           ? <div>
-              this is where we will list the existing MCQ forms and ask to add another
+              {this.state.questionNames.map((el)=>{
+                return <div> saved question: {el} </div>
+              })}
+              <div
+                className="btn btn-sm btn-normal"
+                onClick={this.onMCQAdd.bind(this)}>
+                Add another multiple choice question?
+              </div>
             </div>
           : <div></div>
         }
