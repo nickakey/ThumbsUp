@@ -5,13 +5,14 @@ class LectureStarter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    	name: ''
+    	name: '',
+      lectures: ['The keyword this', 'Execution Contexts']
     };
   }
 
   handleChange (event) {
   	this.setState({
-  		name: event.target.value
+  		name: event.target.value 
   	});
   }
 
@@ -31,22 +32,18 @@ class LectureStarter extends React.Component {
 
 	render () {
   	return (
-      <div className="row text-center">
-        <div className="col-xs-12 text-center">
-          <input
-            type="text"
-            className="form-control"
-            value={this.state.name}
-            placeholder="Enter lecture name"
-            onChange={this.handleChange.bind(this)}
-          />
-        </div>
-        <div className="col-xs-12 text-center">
-        	<div
-            className="btn btn-lg btn-success"
-            onClick={this.onLectureStart.bind(this)}>
-            Start Lecture
-          </div>
+      <div>
+        START AN EXISTING LECTURE
+        <div className="col-xs-3 text-center">
+          {this.state.lectures.map((lecture)=>{
+            return (
+              <div
+                className="btn btn-sm btn-normal"
+                onClick={this.onLectureStart.bind(this)}>
+                {lecture}
+              </div>
+              )
+          })}
         </div>
       </div>
   	)

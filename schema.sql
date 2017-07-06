@@ -46,11 +46,12 @@ INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Mike", "Cla
 INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Chris", "Aaker", "caaker.0@gmail.com", "STUDENT");
 INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Robs", "Rent", "Stlezinrent@gmail.com", "INSTRUCTOR");
 INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Shyan", "Instructor", "shyankashani1@gmail.com", "INSTRUCTOR");
+INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Nick", "Akey", "nicktheflanders@gmail.com", "INSTRUCTOR");
 -- INSERT INTO user
 
 
 /*  Execute this file from the command line by typing:
- *    mysql -u root < thumbs.sql
+ *    mysql -u root < schema.sql
  *  to create the database and the tables.
  */
 
