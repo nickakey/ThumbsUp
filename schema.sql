@@ -1,8 +1,13 @@
+DROP DATABASE IF EXISTS thumbscheck;
 
-DROP TABLE users;
-DROP TABLE thumbs;
-DROP TABLE questions;
-DROP TABLE lectures;
+CREATE DATABASE IF NOT EXISTS thumbscheck;
+
+USE thumbscheck;
+
+-- DROP TABLE users;
+-- DROP TABLE thumbs;
+-- DROP TABLE questions;
+-- DROP TABLE lectures;
 
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
@@ -22,10 +27,20 @@ CREATE TABLE thumbs (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE MCQAnswers (
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  question_id INT NOT NULL,
+  MCQ_value VARCHAR(5) NOT NULL,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (ID)
+);
+
 CREATE TABLE questions (
   id INT NOT NULL AUTO_INCREMENT,
   lecture_id INT NOT NULL,
   average_thumb_question DEC(4,2),
+  MCQ_responses VARCHAR(100),
   PRIMARY KEY (ID)
 );
 
@@ -33,6 +48,7 @@ CREATE TABLE lectures (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(50) NOT NULL,
   average_thumb_lecture DEC(4,2),
+  MCQ_responses VARCHAR(100),
   PRIMARY KEY (ID)
 );
 
@@ -47,6 +63,7 @@ INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Chris", "Aa
 INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Robs", "Rent", "Stlezinrent@gmail.com", "INSTRUCTOR");
 INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Shyan", "Instructor", "shyankashani1@gmail.com", "INSTRUCTOR");
 INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Nick", "Akey", "nicktheflanders@gmail.com", "INSTRUCTOR");
+INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Karina", "Dalca", "karinadalca@gmail.com", "INSTRUCTOR");
 -- INSERT INTO user
 
 
