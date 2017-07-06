@@ -29,11 +29,10 @@ class LectureCreator extends React.Component {
   }
 
   onLectureSave () {
-    if(this.state.tempQuestionName){
-      
-    }
-
-    // 1. Save the lecture to DB
+    if(this.state.questionNames.length){
+      // 1. Save the lecture to DB  
+      this.setState({showInput: true, showAskForMCQ: false});  
+    } 
     // 2a. Remove input box
     // 2b. Add button that asks if you would like to add multiple choice question
     this.setState({showInput: false, showAskForMCQ: true});
