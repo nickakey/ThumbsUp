@@ -11,7 +11,26 @@ const socket = io();
 class Instructor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      questions: [
+        {
+          title: "What is Nick's favorite food?",
+          answer1: "Gus's Chicken Tenders",
+          answer2: "Chicken Parmesian",
+          answer3: "Gnochi with red sauce",
+          answer4: "Grilled Cheese",
+          correctAnswer: 1
+        },
+        {
+          title: "What is Jake's favorite food?",
+          answer1: "Salmon",
+          answer2: "Steak",
+          answer3: "Boston Cream Pie",
+          answer4: "Mousse",
+          correctAnswer: 1
+        }
+      ]
+    };
     socket.on('averageThumbValue', (data) => {
       if (props.view === 'instructor') {
         props.changeThumbValue(data.averageThumbValue);
@@ -36,6 +55,7 @@ class Instructor extends React.Component {
             </div>
           : this.props.lectureStatus === 'lectureStarted'
           ? <LectureButtons
+              questions={this.state.questions}
               lectureId={this.props.lectureId}
               startThumbsCheck={this.props.startThumbsCheck}
               endLecture={this.props.endLecture}
