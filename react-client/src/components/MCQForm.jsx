@@ -14,6 +14,7 @@ class MCQForm extends React.Component {
     return (
       <div>
         <input
+            className="question-form"
             type="text"
             value={this.state.questionName}
             placeholder="Enter Question Name"
@@ -22,29 +23,31 @@ class MCQForm extends React.Component {
         <input
             type="text"
             value={this.props.questions[1]}
-            placeholder="Question 1"
+            placeholder="Answer 1"
             onChange={this.props.handleChange.bind(this, '1')}
         />
         <input
             type="text"
             value={this.props.questions[2]}
-            placeholder="Question 2"
+            placeholder="Answer 2"
             onChange={this.props.handleChange.bind(this, '2')}
         />
         <input
             type="text"
             value={this.props.questions[3]}
-            placeholder="Question 3"
+            placeholder="Answer 3"
             onChange={this.props.handleChange.bind(this, '3')}
         />
         <input
             type="text"
             value={this.props.questions[4]}
-            placeholder="Question 4"
+            placeholder="Answer 4"
             onChange={this.props.handleChange.bind(this, '4')}
+            className="question-form-bottom"
         />
         <div
-          className="smlbtn btn-sm btn-normal"
+          class="text-center"
+          className="question-form smlbtn btn-sm btn-normal"
           onClick={this.props.onQuestionSave.bind(this)}>
           Save Question
         </div>
