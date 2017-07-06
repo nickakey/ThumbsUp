@@ -34,7 +34,7 @@ class LectureStarter extends React.Component {
   	return (
       <div className="text-center">
         START AN EXISTING LECTURE
-        <div className="col-xs-3 text-center">
+        <div className="col-xs-12 text-center">
           {this.state.lectures.map((lecture)=>{
             return (
               <div
