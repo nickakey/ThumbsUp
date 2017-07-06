@@ -19,10 +19,6 @@
   margin-top: 5vh !important;
 }
 
-.question-form-bottom {
-  margin-bottom: 5vh !important;
-}
-
 .form-control {
   margin-top: 24vh !important;
   padding-top: 18px !important; padding-bottom: 18px !important;
@@ -47,16 +43,43 @@
 .btn-left {
   background-color: orange !important;
   color: white !important;
-  margin: auto;
- 
+  margin: auto !important;
+  margin-top: 12vh !important;
+}
+
+
+
+.saved-question {
+  color: white;
+  font-size: 80% !important;
+  background-color: limegreen !important;
+  border-radius: 12px !important;
+  width: 20vw !important;
+  margin: auto !important;
+  margin-top: 3vh !important;
 }
 
 .btn-normal {
   background-color: cornflowerblue !important;
   color: white !important;
-
 }
 
+.btn-normal {
+  background-color: cornflowerblue !important;
+  color: white !important;
+  margin-top: 4vh !important;
+}
+
+.btn-normal {
+  background-color: cornflowerblue !important;
+  color: white !important;
+}
+
+.add-another {
+  font-size: 80% !important;
+  width: 43vw !important;
+  margin: auto;
+}
 
 .col-xs-12 {
   margin: auto;

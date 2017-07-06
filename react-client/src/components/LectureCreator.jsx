@@ -88,7 +88,7 @@ class LectureCreator extends React.Component {
     return (
       <div>
         <div>
-        CREATE NEW LECTURE
+        <div>CREATE NEW LECTURE</div>
         {
           this.state.showInput === true 
           ? <input
@@ -111,12 +111,12 @@ class LectureCreator extends React.Component {
           : this.state.showAddAnotherMCQ === true
           ? <div>
               {this.state.questionNames.map((el)=>{
-                return <div> saved question: {el} </div>
+                return <div className="saved-question"> saved question: {el} </div>
               })}
               <div
-                className="btn btn-sm btn-normal"
+                className="btn btn-sm btn-normal add-another"
                 onClick={this.onMCQAdd.bind(this)}>
-                Add another multiple choice question?
+                Add another multiple choice question
               </div>
             </div>
           : <div></div>
