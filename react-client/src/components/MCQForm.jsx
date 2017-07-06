@@ -46,7 +46,7 @@ class MCQForm extends React.Component {
             className="question-form-bottom"
         />
         <div
-          class="text-center"
+          className="text-center"
           className="question-form smlbtn btn-sm btn-normal"
           onClick={this.props.onQuestionSave.bind(this)}>
           Save Question

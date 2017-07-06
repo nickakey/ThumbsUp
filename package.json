@@ -19,6 +19,7 @@
     "babel-preset-react": "^6.23.0",
     "body-parser": "^1.17.2",
     "css-loader": "^0.28.4",
+    "d3": "^3.5.17",
     "express": "^4.15.0",
     "file-loader": "^0.11.2",
     "google-auth-library": "^0.10.0",
