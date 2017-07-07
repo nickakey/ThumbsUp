@@ -20,7 +20,7 @@
 }
 
 .form-control {
-  margin-top: 24vh !important;
+  margin-top: 10vh !important;
   padding-top: 18px !important;
   padding-bottom: 18px !important;
 }
@@ -30,7 +30,7 @@
   padding-top: 6px !important;
   padding-bottom: 6px !important;
   width: 32vw !important;
-  margin-top: 24vh !important;
+  margin-top: 10vh !important;
 }
 
 .smlbtn {
@@ -48,7 +48,7 @@
   background-color: orange !important;
   color: white !important;
   margin: auto !important;
-  margin-top: 12vh !important;
+  margin-top: 4vh !important;
 }
 
 .saved-question {
@@ -103,6 +103,10 @@
 
 .countdown {
   font-size: 96px !important;
+}
+
+.top-space {
+  margin-top: 6vh !important;
 }
 
 p {
