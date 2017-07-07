@@ -38,10 +38,6 @@ class LectureCreator extends React.Component {
   }
 
 
-  onLectureSave() {
-    this.setState({ showInput: false, showAskForMCQ: true });
-  }
-
   onMCQAdd() {
     this.setState({ showMCQForm: true, showAskForMCQ: false });
   }
