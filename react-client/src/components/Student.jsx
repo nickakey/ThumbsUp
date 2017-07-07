@@ -13,47 +13,47 @@ class Student extends React.Component {
 
     socket.on('lectureStarted', (data) => {
       props.startLecture(data.lectureId, data.lectureName);
-    })
+    });
 
     socket.on('checkingThumbs', (data) => {
       props.startThumbsCheck(data.questionId);
-    })
+    });
 
     socket.on('lectureEnded', (data) => {
       props.endLectureStudent();
-    })
+    });
   }
 
-  render () {
+  render() {
     return (
       <div className="row">
         {this.props.lectureStatus === 'lectureNotStarted'
-        ? <Waiting
+          ? <Waiting
             waitingFor={'lecture'}
             givenName={this.props.givenName}
           />
-        : this.props.lectureStatus === 'lectureStarted'
-        ? <Waiting
-            waitingFor={'question'}
-            givenName={this.props.givenName}
-            lectureName={this.props.lectureName}
-          />
-        : this.props.questionType !== 'thumbs'
-        ? <ThumbInput
-            countdown={this.props.countdown}
-            thumbValue={this.props.thumbValue}
-            changeThumbValue={this.props.changeThumbValue}
-          />
-        : <MCQInput
-            countdown={this.props.countdown}
-            thumbValue={this.props.thumbValue}
-            changeThumbValue={this.props.changeThumbValue}
-            submitCount = {this.props.submitCount}
-            sendAnswer ={this.props.sendAnswer}
-          />
-          }
+          : this.props.lectureStatus === 'lectureStarted'
+            ? <Waiting
+              waitingFor={'question'}
+              givenName={this.props.givenName}
+              lectureName={this.props.lectureName}
+            />
+            : this.props.questionType !== 'thumbs'
+              ? <ThumbInput
+                countdown={this.props.countdown}
+                thumbValue={this.props.thumbValue}
+                changeThumbValue={this.props.changeThumbValue}
+              />
+              : <MCQInput
+                countdown={this.props.countdown}
+                thumbValue={this.props.thumbValue}
+                changeThumbValue={this.props.changeThumbValue}
+                submitCount={this.props.submitCount}
+                sendAnswer={this.props.sendAnswer}
+              />
+        }
       </div>
-    )
+    );
   }
 }
 

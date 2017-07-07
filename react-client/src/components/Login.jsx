@@ -14,10 +14,10 @@ class Login extends React.Component {
   responseGoogle(response) {
     console.log(this.props);
     console.log(response);
-    this.setState({ tokenId: response.tokenId})
+    this.setState({ tokenId: response.tokenId });
   }
 
-  render () {
+  render() {
     return (
       <div className="row">
         <div className="col-xs-12 text-center">
@@ -32,7 +32,7 @@ class Login extends React.Component {
           />
         </div>
       </div>
-    )
+    );
   }
 }
 

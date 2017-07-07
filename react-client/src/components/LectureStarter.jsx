@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 class LectureStarter extends React.Component {
   constructor(props) {
@@ -27,11 +27,11 @@ class LectureStarter extends React.Component {
       this.props.startLecture(response.data.lectureId);
     }).catch((error) => {
       console.log(error);
-    })
+    });
   }
 
-	render () {
-  	return (
+  render() {
+    return (
       <div className="text-center">
         START AN EXISTING LECTURE
         <div className="col-xs-12 text-center">
@@ -43,12 +43,12 @@ class LectureStarter extends React.Component {
                 key={i}>
                 {lecture}
               </div>
-            )
+            );
           })}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default LectureStarter
+export default LectureStarter;
