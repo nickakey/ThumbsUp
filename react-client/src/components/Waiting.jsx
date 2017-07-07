@@ -6,20 +6,20 @@ class Waiting extends React.Component {
     this.state = {};
   }
 
-  render () {
+  render() {
     return (
       <div className="col-xs-12 text-center">
         {this.props.waitingFor === 'lecture'
-        ? <div>
+          ? <div>
             <p>Hi {this.props.givenName}!</p>
             <p>Please wait for a lecture to start.</p>
           </div>
-        : <div>
+          : <div>
             <p>Now in lecture: {this.props.lectureName}</p>
             <p>Please wait for a question.</p>
           </div>}
       </div>
-    )
+    );
   }
 }
 

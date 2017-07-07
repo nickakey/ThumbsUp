@@ -20,7 +20,7 @@ class LectureCreator extends React.Component {
         '3': '',
         '4': ''
       }
-    }
+    };
   }
 
   onLectureSave() {
@@ -55,27 +55,26 @@ class LectureCreator extends React.Component {
       newState.showAddAnotherMCQ = true;
       newState.questionNames.push(this.state.tempQuestionName);
       return newState;
-    })
+    });
   }
 
   handleChange(form, event) {
     // console.log(event)
-    event.persist()
+    event.persist();
     if (form === 'questionName') {
       this.setState({ tempQuestionName: event.target.value });
-    }
-    else {
+    } else {
       this.setState(() => {
         const newState = this.state;
         newState.questions[form] = event.target.value;
         return newState;
-      })
+      });
     }
   }
 
   lectureHandleChange(event) {
     event.persist();
-    this.setState({ name: event.target.value })
+    this.setState({ name: event.target.value });
   }
 
   render() {
@@ -105,7 +104,7 @@ class LectureCreator extends React.Component {
                   : this.state.showAddAnotherMCQ === true
                     ? <div>
                       {this.state.questionNames.map((el, i) => {
-                        return <div className="saved-question" key={i}> saved question: {el} </div>
+                        return <div className="saved-question" key={i}> saved question: {el} </div>;
                       })}
                       <div
                         className="btn btn-sm btn-normal add-another"
@@ -124,8 +123,8 @@ class LectureCreator extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default LectureCreator
+export default LectureCreator;
