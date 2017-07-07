@@ -41,7 +41,7 @@ class LectureButtons extends React.Component {
 
 	render () {
 		return (
-			<div className="row">
+			<div>
 				<div className="col-xs-12 text-center">
 					<div
 						className="btn btn-lg btn-success"
@@ -50,11 +50,15 @@ class LectureButtons extends React.Component {
 					</div>
 				</div>
 				<div className="col-xs-12 text-center">
-					<div
-						className="btn btn-lg btn-success"
+				{this.props.questions.map((el)=>{
+					return (
+						<div
+						className="btn question-option"
 						onClick={this.onMultipleChoiceQ.bind(this)}>
-						Multiple Choice Question
-					</div>
+						Ask: {el.title}					
+						</div>
+						)
+				})}
 				</div>
 				<div className="col-xs-12 text-center">
 					<div
