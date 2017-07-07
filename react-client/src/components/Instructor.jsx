@@ -38,6 +38,7 @@ class Instructor extends React.Component {
           correctAnswer: 1
         }
       ]
+      
     };
     socket.on('averageThumbValue', (data) => {
       if (props.view === 'instructor') {
@@ -77,10 +78,12 @@ class Instructor extends React.Component {
                 clearThumbsCheck={this.props.clearThumbsCheck}
               />
               : <MCQChecker
+                questions={this.state.questions}
                 startLecture={this.props.startLecture}
                 lectureId={this.props.lectureId}
                 countdown={this.props.countdown}
                 thumbValue={this.props.thumbValue}
+                startThumbsCheck={this.props.startThumbsCheck}
                 clearThumbsCheck={this.props.clearThumbsCheck}
                 submitCount={this.props.submitCount}
               />

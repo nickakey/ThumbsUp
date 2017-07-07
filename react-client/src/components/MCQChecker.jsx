@@ -1,31 +1,40 @@
 import React from 'react';
-import Chart from './Chart.jsx';
 import MCQVizualization from './MCQVizualization.jsx';
 import Countdown from './Countdown.jsx';
+import Chart from './Chart.jsx';
 
 class MCQChecker extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      numResponses: props.submitCount,
-    };
-    console.log(this.state.numResponses);
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			question: 'MCQ 1'
+		};
+	}
 
-  render() {
-    return (
-			<div> Current Answer Distribution
-			<Chart />
-				{this.state.numResponses === 0 && <h3>a: 27%</h3>} <br />
-				{this.state.numResponses === 0 && <h3>b: 13%</h3>}<br />
-				{this.state.numResponses === 0 ? <h3>c: 19%</h3> : <h3>100%</h3>}<br />
-				{this.state.numResponses === 0 && <h3>d: 12%</h3>}<br />
-				{this.state.numResponses === 0 && <h3>e:  8%</h3>}<br />
-				{this.state.numResponses === 0 && <h3>f: 20%</h3>}<br />
-
+	render() {
+		return (
+			<div>
+				{this.props.countdown === 0
+					? <div>
+						<Chart
+							question={this.state.question}
+							barData={this.state.barData}
+							startLecture={this.props.startLecture}
+							lectureId={this.props.lectureId}
+							countdown={this.props.countdown}
+							thumbValue={this.props.thumbValue}
+							clearThumbsCheck={this.props.clearThumbsCheck}
+							submitCount={this.props.submitCount}
+							startThumbsCheck={this.props.startThumbsCheck}
+						/>
+					</div>
+					: <div>
+						<p>Time Remaining: {this.props.countdown}</p>
+					</div>
+				}
 			</div>
-    );
-  }
+		);
+	}
 }
 
 export default MCQChecker;
