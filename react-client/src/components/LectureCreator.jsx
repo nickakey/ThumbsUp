@@ -25,14 +25,16 @@ class LectureCreator extends React.Component {
 
   onLectureSave() {
     if (this.state.questionNames.length) {
-      // 1. Save the lecture to DB  
-      this.setState({ showInput: true, showAskForMCQ: false });
+      this.setState({ showInput: true, showAskForMCQ: false});
+    } else {
+      this.setState({ showInput: false, showAskForMCQ: true });
+
     }
 
     // 1. Save the lecture to DB
     // 2a. Remove input box
     // 2b. Add button that asks if you would like to add multiple choice question
-    this.setState({ showInput: false, showAskForMCQ: true });
+    
     // 3. if yes, display title form
     // 4. reset to create new lecture field 
   }
