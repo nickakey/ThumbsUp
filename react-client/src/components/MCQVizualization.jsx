@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ThumbVisualization extends React.Component {
+class MCQVizualization extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,4 +16,4 @@ class ThumbVisualization extends React.Component {
 
 }
 
-export default ThumbVisualization;
+export default MCQVizualization;

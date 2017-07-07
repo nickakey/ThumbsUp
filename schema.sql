@@ -4,10 +4,16 @@ CREATE DATABASE IF NOT EXISTS thumbscheck;
 
 USE thumbscheck;
 
-DROP TABLE users;
-DROP TABLE thumbs;
-DROP TABLE questions;
-DROP TABLE lectures;
+/*  Execute this file from the command line by typing:
+ *    mysql -u root < schema.sql
+ *  to create the database and the tables.
+ */
+
+
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS thumbs;
+DROP TABLE IF EXISTS questions;
+DROP TABLE IF EXISTS lectures;
 
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
@@ -27,10 +33,20 @@ CREATE TABLE thumbs (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE MCQAnswers (
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  question_id INT NOT NULL,
+  MCQ_value VARCHAR(5) NOT NULL,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (ID)
+);
+
 CREATE TABLE questions (
   id INT NOT NULL AUTO_INCREMENT,
-  lecture_id INT NOT NULL,
+  lectureId INT NOT NULL,
   average_thumb_question DEC(4,2),
+  MCQ_responses VARCHAR(100),
   PRIMARY KEY (ID)
 );
 
@@ -38,35 +54,12 @@ CREATE TABLE lectures (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(50) NOT NULL,
   average_thumb_lecture DEC(4,2),
+  MCQ_responses VARCHAR(100),
   PRIMARY KEY (ID)
 );
 
-/*
- *
- */
 
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Rob", "St. Lezin", "robstlezin@gmail.com", "STUDENT");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Shyan", "Kashani", "shyan.kashani@gmail.com", "STUDENT");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Mike", "Clausen", "michaeljclausen@gmail.com", "INSTRUCTOR");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Chris", "Aaker", "caaker.0@gmail.com", "STUDENT");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Robs", "Rent", "Stlezinrent@gmail.com", "INSTRUCTOR");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Shyan", "Instructor", "shyankashani1@gmail.com", "INSTRUCTOR");
-
-
-/*  Execute this file from the command line by typing:
- *    mysql -u root < thumbs.sql
- *  to create the database and the tables.
- */
-
- /*
-  *  Thumb values will be quantified between 1 and 5
-  *  and averages will hold values between 1 and 5 as well
-  *
-  */
-
-
-/*
- *
- * CLEARDB_DATABASE_URL
- * mysql://be6789ba34707e:02c8f71e@us-cdbr-iron-east-03.cleardb.net/heroku_57eb1e9aa24d7a7?reconnect=true
- */
+INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Nick", "Akey", "nicktheflanders@gmail.com", "INSTRUCTOR");
+INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Karina", "Dalca", "karinadalca@gmail.com", "INSTRUCTOR");
+INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Gunpreet", "Singh", "gunpreetskhosa@gmail.com", "INSTRUCTOR");
+INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Jake", "Gober", "jgober96@gmail.com", "INSTRUCTOR");

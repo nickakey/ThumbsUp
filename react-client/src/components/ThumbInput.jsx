@@ -11,21 +11,21 @@ class ThumbInput extends React.Component {
   }
 
 
-  render () {
+  render() {
     return (
       <div className="col-xs-12">
         <div class="row">
           <div className="col-xs-12 text-center heading">
-  					Input your thumb
+            Input your thumb
           </div>
-				</div>
+        </div>
         <div className="row student">
-          <div className="col-xs-2" style={{height: "200px", marginLeft: "6px"}}>
+          <div className="col-xs-2" style={{ height: '200px', marginLeft: '6px' }}>
             <Slider
               vertical
               min={0}
               max={4}
-              marks={{0:'Down', 1:'–', 2:'Mid', 3:'–', 4:'Up'}}
+              marks={{ 0: 'Down', 1: '–', 2: 'Mid', 3: '–', 4: 'Up' }}
               step={null}
               onChange={this.props.changeThumbValue}
               defaultValue={2}
@@ -39,7 +39,7 @@ class ThumbInput extends React.Component {
         </div>
         <Countdown countdown={this.props.countdown} />
       </div>
-    )
+    );
   }
 }
 

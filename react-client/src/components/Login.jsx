@@ -14,15 +14,15 @@ class Login extends React.Component {
   responseGoogle(response) {
     console.log(this.props);
     console.log(response);
-    this.setState({ tokenId: response.tokenId})
+    this.setState({ tokenId: response.tokenId });
   }
 
-  render () {
+  render() {
     return (
       <div className="row">
         <div className="col-xs-12 text-center">
           <GoogleLogin
-            clientId="430160456638-mmtpqlu3h8t0nkum0tlo167d492gvbmf.apps.googleusercontent.com"
+            clientId="680855944065-qdr8lsnna8oolpo50sar7i6dm5d1akip.apps.googleusercontent.com"
             scope="profile email"
             buttonText="Login with Google"
             onSuccess={this.props.onSignIn}
@@ -32,7 +32,7 @@ class Login extends React.Component {
           />
         </div>
       </div>
-    )
+    );
   }
 }
 

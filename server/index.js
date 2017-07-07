@@ -21,67 +21,67 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.get('/login', (req, res) => {
   var googleResults;
-  google.verifyToken(req.query.tokenId, '430160456638-mmtpqlu3h8t0nkum0tlo167d492gvbmf.apps.googleusercontent.com')
-  .then(fromGoogle => {
-    googleResults = fromGoogle;
-    return db.getUserType(fromGoogle.gmail);
-  })
-  .then(result => {
-    console.log(result);
-    if (result.length === 0) {
-      //add user to db
-      console.log(`add user to db, ${googleResults.gmail}`);
-      return db.addStudent(googleResults.first, googleResults.last, googleResults.gmail);
-    } else {
-      res.status(200).send(result);
-      throw ('early exit from promise chain');
-    }
-  })
-  .then(result => {
-    console.log(result);
-    return db.getUserType(googleResults.gmail);
-  })
-  .then(result => {
-    res.status(201).send(result);
-  })
-  .catch(err => {
-    console.log(err);
-  })
-})
+  google.verifyToken(req.query.tokenId, '680855944065-qdr8lsnna8oolpo50sar7i6dm5d1akip.apps.googleusercontent.com')
+    .then(fromGoogle => {
+      googleResults = fromGoogle;
+      return db.getUserType(fromGoogle.gmail);
+    })
+    .then(result => {
+      console.log(result);
+      if (result.length === 0) {
+        //add user to db
+        console.log(`add user to db, ${googleResults.gmail}`);
+        return db.addStudent(googleResults.first, googleResults.last, googleResults.gmail);
+      } else {
+        res.status(200).send(result);
+        throw ('early exit from promise chain');
+      }
+    })
+    .then(result => {
+      console.log(result);
+      return db.getUserType(googleResults.gmail);
+    })
+    .then(result => {
+      res.status(201).send(result);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 app.post('/lecture', (req, res) => {
   let name = req.query.name;
   db.createNewLecture(name)
-  .then(results => {
-    lectureId = results.insertId;
-    res.send({ lectureId: lectureId });
-    io.emit('lectureStarted', {
-      lectureId: lectureId,
-      lectureName: name
-    })
-  })
-})
+    .then(results => {
+      lectureId = results.insertId;
+      res.send({ lectureId: lectureId });
+      io.emit('lectureStarted', {
+        lectureId: lectureId,
+        lectureName: name
+      });
+    });
+});
 
 app.post('/checkthumbs', (req, res) => {
-  let lecture = req.query.lecture_id;
+  let lecture = req.query.lectureId;
   db.createNewQuestion(lecture)
-  .then(results => {
-    questionId = results.insertId;
-    thumbs = new ThumbsData(lectureId, questionId);
-    //Emit the new question to students here
-    io.emit('checkingThumbs', { questionId: questionId });
-    //This will add thumbsdata in the db after the question ends
-    db.asyncTimeout(32000, () => {
-      for (let student in thumbs.students) {
-        //console.log(`${thumbs.students[student].gmail}, ${thumbs.questionId}, ${thumbs.students[student].thumbValue}`);
-        db.createThumbData(thumbs.students[student].gmail, thumbs.questionId, thumbs.students[student].thumbValue);
-      }
-      db.addAvgThumbForQuestion(questionId, thumbs.getAverageThumbValue());
+    .then(results => {
+      questionId = results.insertId;
+      thumbs = new ThumbsData(lectureId, questionId);
+      //Emit the new question to students here
+      io.emit('checkingThumbs', { questionId: questionId });
+      //This will add thumbsdata in the db after the question ends
+      db.asyncTimeout(32000, () => {
+        for (let student in thumbs.students) {
+          //console.log(`${thumbs.students[student].gmail}, ${thumbs.questionId}, ${thumbs.students[student].thumbValue}`);
+          db.createThumbData(thumbs.students[student].gmail, thumbs.questionId, thumbs.students[student].thumbValue);
+        }
+        db.addAvgThumbForQuestion(questionId, thumbs.getAverageThumbValue());
+      });
+      //send the response to the teacher
+      res.send({ questionId: questionId });
     });
-    //send the response to the teacher
-    res.send({ questionId: questionId });
-  })
-})
+});
 
 app.post('/endLecture', (req, res) => {
   let lecture = req.query.lectureId;
@@ -90,16 +90,16 @@ app.post('/endLecture', (req, res) => {
   io.emit('lectureEnded', { response: 'ok' });
 
   db.getAvgThumbsForQuestionsInLecture(lectureId)
-  .then(results => {
-    console.log(results);
-    let sum = 0;
-    let avg = 0;
-    for (let i = 0; i < results.length; i++) {
-      sum += results[i].average_thumb_question;
-    }
-    avg = (sum / results.length);
-    db.addAvgThumbForLecture(lectureId, avg);
-  });
+    .then(results => {
+      console.log(results);
+      let sum = 0;
+      let avg = 0;
+      for (let i = 0; i < results.length; i++) {
+        sum += results[i].average_thumb_question;
+      }
+      avg = (sum / results.length);
+      db.addAvgThumbForLecture(lectureId, avg);
+    });
   res.status(200).send('end lecture');
 });
 
@@ -107,7 +107,7 @@ io.on('connection', function (socket) {
   console.log(`socket: ${socket}`);
 
   //put the gmail username on each socket that is connected
-  socket.on('username', function(data) {
+  socket.on('username', function (data) {
     console.log('username', data);
     socket.username = data.username;
   });
@@ -117,7 +117,7 @@ io.on('connection', function (socket) {
     socket.instructor = data.username;
     console.log(`the instructor is: ${socket.instructor}`);
 
-  })
+  });
 
   //recieve the thumb value from the student
   socket.on('thumbValue', data => {
@@ -132,7 +132,7 @@ io.on('connection', function (socket) {
       console.log(`sending averageThumbValue of ${average}`);
       console.log(`thumb value for ${socket.username} is ${data.thumbValue}`);
     }
-  })
+  });
 });
 
 class ThumbsData {
@@ -179,3 +179,48 @@ class Student {
     this.thumbValue = null;
   }
 }
+
+// post question 
+
+app.post('/questions', (req, res) => {
+  var question = req.body.question;
+  var lectureId = req.body.lectureId;
+
+  db.createQuestion(lectureId, question);
+
+  res.status(200);
+  res.end();
+});
+
+// post answers 
+app.post('/answers', (req, res) => {
+  var options = req.body.options;
+  var questionsId = req.body.questionId;
+
+  db.createQuestion(questionsId, options);
+
+  res.status(200);
+  res.end();
+});
+
+// get questions 
+app.get('/questions', (req, res) => {
+  var lectureId = req.body.lectureId;
+
+  return db.getQuestions(lectureId)
+    .then(results => {
+      res.status(200).send(result);
+    });
+});
+
+// get answers 
+
+app.get('/answers', (req, res) => {
+  var questionId = req.body.questionId;
+
+  return db.getAnswers(questionId)
+    .then(results => {
+      res.status(200).send(result);
+    });
+});
+
