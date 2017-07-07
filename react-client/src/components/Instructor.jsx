@@ -28,6 +28,14 @@ class Instructor extends React.Component {
           answer3: "Boston Cream Pie",
           answer4: "Mousse",
           correctAnswer: 1
+        }, 
+        {
+          title: "What is the best pie?",
+          answer1: "Apple",
+          answer2: "Cherry",
+          answer3: "Key Lime",
+          answer4: "Sweet potato",
+          correctAnswer: 1
         }
       ]
     };
