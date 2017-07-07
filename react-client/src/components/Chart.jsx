@@ -11,16 +11,16 @@ class Chart extends React.Component {
     super(props);
     this.state = {
       barData: [
-				{
-					"name": "Series A",
-					"values": [
-						{ "x": 'A', "y": 27 },
-						{ "x": 'B', "y": 12 },
-						{ "x": 'C', "y": 40 },
-						{ "x": 'D', "y": 15 },
-					]
-				},
-			],
+        {
+          'name': 'Series A',
+          'values': [
+            { 'x': 'A', 'y': 27 },
+            { 'x': 'B', 'y': 12 },
+            { 'x': 'C', 'y': 40 },
+            { 'x': 'D', 'y': 15 },
+          ]
+        },
+      ],
       question: props.question
     };
   }
@@ -35,7 +35,7 @@ class Chart extends React.Component {
           title={this.state.question}
           xAxisLabel="Option"
           yAxisLabel="Number"
-          />
+        />
       </div>
     );
   }
