@@ -56,6 +56,14 @@ class LectureCreator extends React.Component {
       newState.questionNames.push(this.state.tempQuestionName);
       return newState;
     });
+    this.setState({
+      questions: {
+        '1': '',
+        '2': '',
+        '3': '',
+        '4': ''
+      }
+    })
   }
 
   handleChange(form, event) {
