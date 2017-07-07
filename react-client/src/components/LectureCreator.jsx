@@ -25,10 +25,9 @@ class LectureCreator extends React.Component {
 
   onLectureSave() {
     if (this.state.questionNames.length) {
-      this.setState({ showInput: true, showAskForMCQ: false});
+      this.setState({ showInput: true, showAskForMCQ: false, questionNames: [], name: ''});
     } else {
       this.setState({ showInput: false, showAskForMCQ: true });
-
     }
 
     // 1. Save the lecture to DB
