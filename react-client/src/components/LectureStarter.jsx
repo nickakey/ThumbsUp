@@ -17,7 +17,17 @@ class LectureStarter extends React.Component {
   }
 
   onLectureStart() {
-    this.props.startLecture(response.data.lectureId);
+    axios({
+      method: 'post',
+      url: '/lecture',
+      params: {
+        name: this.state.name
+      }
+    }).then((response) => {
+      this.props.startLecture(response.data.lectureId);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   render() {
