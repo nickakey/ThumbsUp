@@ -117,26 +117,30 @@ class Instructor extends React.Component {
               endLecture={this.props.endLecture}
               changeQuestion={this.changeQuestion.bind(this)}
             />
-            : this.props.questionType === 'thumbs'
-              ? <ThumbsChecker
-                startLecture={this.props.startLecture}
-                lectureId={this.props.lectureId}
-                countdown={this.props.countdown}
-                thumbValue={this.props.thumbValue}
-                clearThumbsCheck={this.props.clearThumbsCheck}
-              />
-              : <MCQChecker
-                MCQAnswer={this.props.MCQAnswer}
-                currentQuestion={this.state.currentQuestion}
-                currentOptions={this.state.currentOptions}
-                startLecture={this.props.startLecture}
-                lectureId={this.props.lectureId}
-                countdown={this.props.countdown}
-                thumbValue={this.props.thumbValue}
-                startThumbsCheck={this.props.startThumbsCheck}
-                clearThumbsCheck={this.props.clearThumbsCheck}
-                submitCount={this.props.submitCount}
-              />
+
+
+
+          : this.props.questionType === 'thumbs'
+          ? <ThumbsChecker
+            startLecture={this.props.startLecture}
+            lectureId={this.props.lectureId}
+            countdown={this.props.countdown}
+            thumbValue={this.props.thumbValue}
+            clearThumbsCheck={this.props.clearThumbsCheck}
+          />
+          : <MCQChecker
+            MCQAnswer = {this.props.MCQAnswer}
+            startLecture={this.props.startLecture}
+            lectureId={this.props.lectureId}
+            countdown={this.props.countdown}
+            thumbValue={this.props.thumbValue}
+            clearThumbsCheck={this.props.clearThumbsCheck}
+            submitCount={this.props.submitCount}
+            questions={this.state.questions}
+          />
+
+
+
         }
       </div>
     );

@@ -36,17 +36,14 @@ class ThumbInput extends React.Component {
     return (
       <div className="col-xs-12" >
         <div class="row">
-          <div className="col-xs-12 text-center heading" >
-            <h1>When the following code is run, what is the first word in the code that will cause an error to be thrown?</h1>
+          <div>
+            When the following code is run, what is the first word in the code that will cause an error to be thrown?
           </div>
-          <div className="col-xs-12 text-center heading" style={{ fontFamily: 'Consolas', float: 'center', padding: '20px', border: '3px solid green' }}>
-            {'var setTimeoutClone = function(this, that, notNew) {' + '\n' + 'setTimeout(data=> alert(typeof Number(this), Math.floor(Number(this)) % 300 % Number(new));' + '\n' + 'return break new this continue;}' + '\n \n' + 'setTimeoutClone(Object.keys(this)[0], 1, this);'}
-
-          </div>
-        </div>
-        <div className="row student">
-          <div className="col-xs-12 text-center heading">
-            <form onSubmit={this.answerSubmit.bind(this)} style={{ fontWeight: 'bold', fontFamily: 'Times New Roman', textAlign: 'left' }}>
+         
+        </div> 
+        <div className="row student"  style={{fontWeight:'normal'}}>
+          <div >
+            <form onSubmit={this.answerSubmit.bind(this)} style={{margin: 'auto', width: '50%',padding: '10px',fontFamily: 'Times New Roman'}}>
 
               <input type='radio' value="a" name="-" onChange={this.handleOptionChange.bind(this)} />
               a) this (it's first appearance, as a parameter of the function `setTimeoutClone`) <br />
@@ -69,7 +66,14 @@ class ThumbInput extends React.Component {
               <input type='radio' value="g" name="-" onChange={this.handleOptionChange.bind(this)} />
               g) none of the above <br /> <br /><br />
 
-              {this.state.submitted ? <h5>Your answer has been submitted </h5> : <button >Submit Answer</button>}
+              {this.state.submitted ? <h5>Your answer has been submitted </h5> : <button style={{backgroundColor: '#4CAF50',
+    border: 'none',
+    color: 'white',
+    padding: '4px 4px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px'}}>Submit Answer</button>}
             </form>
           </div>
         </div>
@@ -80,3 +84,11 @@ class ThumbInput extends React.Component {
 }
 
 export default ThumbInput;
+
+
+
+
+// <div className="col-xs-12 text-center heading" style={{ fontFamily: 'Consolas', float: 'center', padding: '20px', border: '3px solid green' }}>
+//             {'var setTimeoutClone = function(this, that, notNew) {' + '\n' + 'setTimeout(data=> alert(typeof Number(this), Math.floor(Number(this)) % 300 % Number(new));' + '\n' + 'return break new this continue;}' + '\n \n' + 'setTimeoutClone(Object.keys(this)[0], 1, this);'}
+
+//           </div>

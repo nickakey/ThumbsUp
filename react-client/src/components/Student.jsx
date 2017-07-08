@@ -33,7 +33,7 @@ class Student extends React.Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row" style={{fontFamily: 'Times New Roman', fontWeight:'bold'}}>
         {this.props.lectureStatus === 'lectureNotStarted'
           ? <Waiting
             waitingFor={'lecture'}
@@ -58,6 +58,7 @@ class Student extends React.Component {
                 changeThumbValue={this.props.changeThumbValue}
                 submitCount={this.props.submitCount}
                 sendAnswer={this.props.sendAnswer}
+
               />
         }
 

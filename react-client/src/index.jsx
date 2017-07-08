@@ -22,7 +22,7 @@ class App extends React.Component {
       lectureId: '',
       questionId: '',
       thumbValue: 2,
-      countdown: 45,
+      countdown: 23,
       givenName: '',
       lectureName: '',
       questionType: '',
