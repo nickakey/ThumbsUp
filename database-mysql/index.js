@@ -35,9 +35,10 @@ exports.createNewLecture = function (name) {
   });
 };
 
-exports.createNewQuestion = function (lectureId) {
+exports.createNewQuestion = function (lectureId, question) {
+  console.log('create new question is happening!!! ')
   return new Promise((resolve, reject) => {
-    pool.query(`INSERT INTO questions (lectureId) VALUES ("${lectureId}")`, (err, results) => {
+    pool.query(`INSERT INTO questions (lectureId, question) VALUES ("${lectureId}", "${question}")`, (err, results) => {
       if (err) {
         console.log(err);
       } else {
