@@ -7,7 +7,7 @@ class MCQChecker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: 'MCQ 1'
+			currentOptions: this.props.currentOptions
     };
   }
 
@@ -24,7 +24,7 @@ class MCQChecker extends React.Component {
 				{this.props.countdown === 0
 					? <div>
 						<Chart
-							question={this.state.question}
+							currentQuestion={this.props.currentQuestion}
 							barData={this.state.barData}
 							startLecture={this.props.startLecture}
 							lectureId={this.props.lectureId}
@@ -36,7 +36,13 @@ class MCQChecker extends React.Component {
 						/>
 					</div>
 					: <div>
-						<p>Time Remaining: {this.props.countdown}</p>
+						<h1>Question: {this.props.currentQuestion}</h1>
+						<h3>Option A: {this.props.currentOptions[0]}</h3>
+						<h3>Option B: {this.props.currentOptions[1]}</h3>
+						<h3>Option C: {this.props.currentOptions[2]}</h3>
+						<h3>Option D: {this.props.currentOptions[3]}</h3> 
+						<br/>
+						<h3>Time Remaining: {this.props.countdown}</h3>
 					</div>
 				}
 

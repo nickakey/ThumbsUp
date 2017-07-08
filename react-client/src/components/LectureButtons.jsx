@@ -4,7 +4,9 @@ import axios from 'axios';
 class LectureButtons extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+
+    };
   }
 
 
@@ -66,7 +68,11 @@ class LectureButtons extends React.Component {
               <div
                 className="btn question-option"
                 key={i}
-                onClick={this.onMCQ.bind(this)}>
+                onClick={() => {
+                  this.onMCQ.call(this);
+                  this.props.changeQuestion(el);
+                }
+                }>
                 Ask: {el.title}
               </div>
             );

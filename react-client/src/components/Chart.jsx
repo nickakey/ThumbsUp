@@ -12,7 +12,7 @@ class Chart extends React.Component {
     this.state = {
       barData: [
         {
-          'name': 'Series A',
+          'name': 'Answers',
           'values': [
             { 'x': 'A', 'y': 27 },
             { 'x': 'B', 'y': 12 },
@@ -21,7 +21,7 @@ class Chart extends React.Component {
           ]
         },
       ],
-      question: props.question
+      currentQuestion: props.currentQuestion
     };
   }
 
@@ -32,7 +32,7 @@ class Chart extends React.Component {
           data={this.state.barData}
           width={500}
           height={300}
-          title={this.state.question}
+          title={this.state.currentQuestion}
           xAxisLabel="Option"
           yAxisLabel="Number"
         />
