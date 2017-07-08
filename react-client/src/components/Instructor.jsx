@@ -41,8 +41,7 @@ class Instructor extends React.Component {
       ],
       currentQuestion: '',
       currentOptions: [],
-      lectures: null,
-      lectureId: null
+      lectures: null
     };
 
     socket.on('averageThumbValue', (data) => {
@@ -72,10 +71,6 @@ class Instructor extends React.Component {
     this.getLecturesFromDB();
   }
 
-  setLectureId(id){
-    this.setState({lectureId: id})
-  }
-
   getLecturesFromDB(){
     axios({
       method: 'get',
@@ -97,7 +92,6 @@ class Instructor extends React.Component {
           ? <div>
             <div className="col-xs-6 text-center">
               <LectureCreator
-              setLectureId = {this.setLectureId.bind(this)}
               getLecturesFromDB = {this.getLecturesFromDB.bind(this)}
               />
             </div>

@@ -60,12 +60,42 @@ class App extends React.Component {
 
   }
 
-  startLecture(lectureId, lectureName) {
-    this.setState({
-      lectureStatus: 'lectureStarted',
-      lectureId: lectureId,
-      lectureName: lectureName
+  startLecture(lectureName) {
+    axios({
+      method: 'get',
+      url: '/questionsByLectureName',
+      params: {
+        lectureName: lectureName
+      }
+    }).then((result) => {
+      console.log('this is the result from clicking a lecture!!! ', result)
+      this.setState({
+        lectureStatus: 'lectureStarted',
+        lectureId: lectureId,
+        lectureName: lectureName
+      });
     });
+
+
+    // axios({
+    //   method: 'get',
+    //   url: '/questions',
+    //   params: {
+    //     lectureId: lectureId
+    //   }
+    // }).then((result) => {
+    //   console.log('this is the result from clicking a lecture!!! ', result)
+    //   this.setState({
+    //     lectureStatus: 'lectureStarted',
+    //     lectureId: lectureId,
+    //     lectureName: lectureName
+    //   });
+    // });
+
+  }
+
+  setLectureId(id){
+    this.setState({lectureId: id})
   }
 
   endLecture() {
@@ -255,6 +285,7 @@ class App extends React.Component {
                 startMCQ={this.startMCQ.bind(this)}
               />
               : <Instructor
+                setLectureId={this.state.setLectureId}
                 thumbValue={this.state.thumbValue}
                 lectureId={this.state.lectureId}
                 lectureStatus={this.state.lectureStatus}

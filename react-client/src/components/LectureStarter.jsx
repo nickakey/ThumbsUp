@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 
 class LectureStarter extends React.Component {
   constructor(props) {
@@ -15,8 +16,10 @@ class LectureStarter extends React.Component {
     });
   }
 
-  onLectureStart() {
-    this.props.startLecture(this.props.lectureId);
+  onLectureStart(e) {
+    var div = $(e.target);
+    console.log('what is the lecture id in lecturestarter? ', this.props.lectureId)
+    this.props.startLecture(div[0].innerHTML);
   }
 
   render() {
