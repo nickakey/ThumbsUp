@@ -277,4 +277,3 @@ app.get('/answers', (req, res) => {
       res.status(200).send(result);
     });
 });
-

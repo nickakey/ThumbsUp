@@ -159,4 +159,3 @@ class LectureCreator extends React.Component {
 }
 
 export default LectureCreator;
-

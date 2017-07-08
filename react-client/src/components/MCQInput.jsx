@@ -84,11 +84,3 @@ class ThumbInput extends React.Component {
 }
 
 export default ThumbInput;
-
-
-
-
-// <div className="col-xs-12 text-center heading" style={{ fontFamily: 'Consolas', float: 'center', padding: '20px', border: '3px solid green' }}>
-//             {'var setTimeoutClone = function(this, that, notNew) {' + '\n' + 'setTimeout(data=> alert(typeof Number(this), Math.floor(Number(this)) % 300 % Number(new));' + '\n' + 'return break new this continue;}' + '\n \n' + 'setTimeoutClone(Object.keys(this)[0], 1, this);'}
-
-//           </div>

@@ -39,7 +39,6 @@ class Student extends React.Component {
             waitingFor={'lecture'}
             givenName={this.props.givenName}
           />
-
           : this.props.lectureStatus === 'lectureStarted'
             ? <Waiting
               waitingFor={'question'}
@@ -58,7 +57,6 @@ class Student extends React.Component {
                 changeThumbValue={this.props.changeThumbValue}
                 submitCount={this.props.submitCount}
                 sendAnswer={this.props.sendAnswer}
-
               />
         }
 
