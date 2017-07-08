@@ -29,7 +29,7 @@ class LectureButtons extends React.Component {
 
   onMCQ() {
     console.log('onMCQis being called');
-    //console.log('this.props.lectureId', this.props.lectureId);
+    console.log('this.props.lectureId', this.props.lectureId);
     axios({
       method: 'post',
       url: '/mcq',

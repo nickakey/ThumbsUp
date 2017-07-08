@@ -96,7 +96,8 @@ class App extends React.Component {
     }).then((result) => {
       console.log('this is the result from clicking a lecture!!! ', result)
       this.setState({
-        questions: null
+        questions: null,
+        lectureId: result.data[0].lectureId
       })
       if(result.data.length > 0){
         this.setState({
