@@ -6,7 +6,6 @@ class LectureStarter extends React.Component {
     super(props);
     this.state = {
       name: '',
-      lectures: ['The keyword this', 'Execution Contexts']
     };
   }
 
@@ -34,13 +33,13 @@ class LectureStarter extends React.Component {
       <div className="text-center">
         START AN EXISTING LECTURE
         <div className="col-xs-12 text-center top-space">
-          {this.state.lectures.map((lecture, i) => {
+          {this.props.lectures.map((lecture, i) => {
             return (
               <div
                 className="btn btn-sm btn-normal text-center"
                 onClick={this.onLectureStart.bind(this)}
                 key={i}>
-                {lecture}
+                {lecture.name}
               </div>
             );
           })}

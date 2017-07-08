@@ -4,6 +4,7 @@ import LectureCreator from './LectureCreator.jsx';
 import LectureButtons from './LectureButtons.jsx';
 import ThumbsChecker from './ThumbsChecker.jsx';
 import MCQChecker from './MCQChecker.jsx';
+import axios from 'axios';
 
 const io = require('socket.io-client');
 const socket = io();
@@ -39,7 +40,8 @@ class Instructor extends React.Component {
         }
       ],
       currentQuestion: '',
-      currentOptions: []
+      currentOptions: [],
+      lectures: []
     };
 
     socket.on('averageThumbValue', (data) => {
@@ -65,6 +67,23 @@ class Instructor extends React.Component {
     });
   }
 
+  componentDidMount(){
+    this.getLecturesFromDB();
+  }
+
+  getLecturesFromDB(){
+    axios({
+      method: 'get',
+      url: '/lectures',
+    }).then((response) => {
+      this.setState({lectures: response.data}, ()=>{
+        console.log('the state has updated! ', this.state)
+      })
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
 
   render() {
     return (
@@ -77,6 +96,7 @@ class Instructor extends React.Component {
             </div>
             <div className="col-xs-6 text-center">
               <LectureStarter
+                lectures={this.state.lectures}
                 startLecture={this.props.startLecture}
               />
             </div>
