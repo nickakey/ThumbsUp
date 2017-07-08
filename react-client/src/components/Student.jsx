@@ -18,12 +18,12 @@ class Student extends React.Component {
     socket.on('checkingThumbs', (data) => {
       props.startThumbsCheck(data.questionId);
 
-    })
-    
+    });
+
 
     socket.on('posingMCQ', (data) => {
       props.startMCQ(data.questionId);
-    })
+    });
 
 
     socket.on('lectureEnded', (data) => {
@@ -40,26 +40,26 @@ class Student extends React.Component {
             givenName={this.props.givenName}
           />
 
-        : this.props.lectureStatus === 'lectureStarted'
-        ? <Waiting
-            waitingFor={'question'}
-            givenName={this.props.givenName}
-            lectureName={this.props.lectureName}
-          />
-        : this.props.lectureStatus !== 'posingMCQ'
-        ? <ThumbInput
-            countdown={this.props.countdown}
-            thumbValue={this.props.thumbValue}
-            changeThumbValue={this.props.changeThumbValue}
-          />
-        : <MCQInput
-            countdown={this.props.countdown}
-            thumbValue={this.props.thumbValue}
-            changeThumbValue={this.props.changeThumbValue}
-            submitCount = {this.props.submitCount}
-            sendAnswer ={this.props.sendAnswer}
-          />
-          }
+          : this.props.lectureStatus === 'lectureStarted'
+            ? <Waiting
+              waitingFor={'question'}
+              givenName={this.props.givenName}
+              lectureName={this.props.lectureName}
+            />
+            : this.props.lectureStatus !== 'posingMCQ'
+              ? <ThumbInput
+                countdown={this.props.countdown}
+                thumbValue={this.props.thumbValue}
+                changeThumbValue={this.props.changeThumbValue}
+              />
+              : <MCQInput
+                countdown={this.props.countdown}
+                thumbValue={this.props.thumbValue}
+                changeThumbValue={this.props.changeThumbValue}
+                submitCount={this.props.submitCount}
+                sendAnswer={this.props.sendAnswer}
+              />
+        }
 
       </div>
     );

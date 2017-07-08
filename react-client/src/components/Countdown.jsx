@@ -10,9 +10,9 @@ class Countdown extends React.Component {
 
   render() {
     return (
-			<div className="col-xs-12 text-center countdown">
-				Time Left: {this.props.countdown}
-			</div>
+      <div className="col-xs-12 text-center countdown">
+        Time Left: {this.props.countdown}
+      </div>
     );
   }
 }

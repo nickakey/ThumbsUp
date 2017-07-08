@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class LectureStarter extends React.Component {  
+class LectureStarter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

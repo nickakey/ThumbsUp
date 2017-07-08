@@ -25,7 +25,7 @@ class LectureCreator extends React.Component {
   }
 
   onLectureSave() {
-    if (this.state.showInput){
+    if (this.state.showInput) {
       this.setState({ showInput: false, showAskForMCQ: true });
         axios({
           method: 'post',
@@ -158,3 +158,4 @@ class LectureCreator extends React.Component {
 }
 
 export default LectureCreator;
+
