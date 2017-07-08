@@ -245,6 +245,19 @@ exports.getQuestions = function (lectureId) {
   });
 };
 
+exports.getLectures = function () {
+  return new Promise((resolve, reject) => {
+    pool.query(`select * from lectures`, (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
+
 // pull all answers for questionId 
 
 exports.getAnswers = function (questionId) {

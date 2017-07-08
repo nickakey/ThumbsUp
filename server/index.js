@@ -248,34 +248,22 @@ app.post('/questionsAnswers', (req, res) => {
   })
 });
 
-// app.post('/questions', (req, res) => {
-//   var question = req.query.question;
-//   var lectureId = req.query.lectureId;
-
-//   db.createQuestion(lectureId, question);
-
-//   res.status(200);
-//   res.end();
-// });
-
-// // post answers 
-// app.post('/answers', (req, res) => {
-//   var options = req.query.options;
-//   var questionsId = req.query.questionId;
-
-//   db.createQuestion(questionsId, options);
-
-//   res.status(200);
-//   res.end();
-// });
-
 // get questions 
 app.get('/questions', (req, res) => {
   var lectureId = req.body.lectureId;
-
   return db.getQuestions(lectureId)
     .then(results => {
       res.status(200).send(result);
+    });
+});
+
+
+app.get('/lectures', (req, res) => {
+  return db.getLectures()
+    .then(results => {
+      res
+      .status(200)
+      .send(results);
     });
 });
 
