@@ -55,14 +55,6 @@ class LectureButtons extends React.Component {
 					</div>
         </div>
         <div className="col-xs-12 text-center">
-          <div
-            className="btn btn-lg btn-success"
-            onClick={this.onMCQ.bind(this)}>
-            Multiple Choice Question
-
-					</div>
-        </div>
-        <div className="col-xs-12 text-center">
           {this.props.questions !== null
             ? <div>
                 {this.props.questions.map((el, i) => {
