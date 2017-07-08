@@ -41,7 +41,7 @@ class Instructor extends React.Component {
       ],
       currentQuestion: '',
       currentOptions: [],
-      lectures: []
+      lectures: null
     };
 
     socket.on('averageThumbValue', (data) => {
