@@ -236,7 +236,7 @@ class Student {
 //you can delete the thing below this
 app.post('/questionsAnswers', (req, res) => {
   const questionObject = JSON.parse(req.query.options);
-  return db.createNewQuestion(questionObject.lectureID, questionObject.question)
+  return db.createNewQuestion(questionObject.lectureID, questionObject.question, questionObject.answer1, questionObject.answer2, questionObject.answer3, questionObject.answer4)
   .then((dbres)=>{
     console.log('this is the database res ', dbres)
     res.status(200)
