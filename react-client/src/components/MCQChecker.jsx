@@ -4,15 +4,15 @@ import Countdown from './Countdown.jsx';
 import Chart from './Chart.jsx';
 
 class MCQChecker extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			question: 'MCQ 1'
-		};
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      question: 'MCQ 1'
+    };
+  }
 
-	render() {
-		return (
+  render() {
+    return (
 			<div>
 				{this.props.countdown === 0
 					? <div>
@@ -33,8 +33,8 @@ class MCQChecker extends React.Component {
 					</div>
 				}
 			</div>
-		);
-	}
+    );
+  }
 }
 
 export default MCQChecker;

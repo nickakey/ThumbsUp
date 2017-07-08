@@ -179,3 +179,48 @@ class Student {
     this.thumbValue = null;
   }
 }
+
+// post question 
+
+app.post('/questions', (req, res) => {
+  var question = req.body.question;
+  var lectureId = req.body.lectureId;
+
+  db.createQuestion(lectureId, question);
+
+  res.status(200);
+  res.end();
+});
+
+// post answers 
+app.post('/answers', (req, res) => {
+  var options = req.body.options;
+  var questionsId = req.body.questionId;
+
+  db.createQuestion(questionsId, options);
+
+  res.status(200);
+  res.end();
+});
+
+// get questions 
+app.get('/questions', (req, res) => {
+  var lectureId = req.body.lectureId;
+
+  return db.getQuestions(lectureId)
+    .then(results => {
+      res.status(200).send(result);
+    });
+});
+
+// get answers 
+
+app.get('/answers', (req, res) => {
+  var questionId = req.body.questionId;
+
+  return db.getAnswers(questionId)
+    .then(results => {
+      res.status(200).send(result);
+    });
+});
+

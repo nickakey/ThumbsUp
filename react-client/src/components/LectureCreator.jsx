@@ -25,7 +25,7 @@ class LectureCreator extends React.Component {
 
   onLectureSave() {
     if (this.state.questionNames.length) {
-      this.setState({ showInput: true, showAskForMCQ: false, questionNames: [], name: ''});
+      this.setState({ showInput: true, showAskForMCQ: false, questionNames: [], name: '' });
     } else {
       this.setState({ showInput: false, showAskForMCQ: true });
     }
@@ -33,7 +33,7 @@ class LectureCreator extends React.Component {
     // 1. Save the lecture to DB
     // 2a. Remove input box
     // 2b. Add button that asks if you would like to add multiple choice question
-    
+
     // 3. if yes, display title form
     // 4. reset to create new lecture field 
   }
@@ -60,7 +60,7 @@ class LectureCreator extends React.Component {
         '3': '',
         '4': ''
       }
-    })
+    });
   }
 
   handleChange(form, event) {

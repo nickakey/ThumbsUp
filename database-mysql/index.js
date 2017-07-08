@@ -146,21 +146,59 @@ exports.asyncTimeout = function (time, callback) {
   });
 };
 
-/* Test Functions
 
-// 1
-var prom1 = exports.getUserId('caaker.0@gmail.com');
-prom1.then(results => {
-  console.log(results[0].id);
-});
+// add question to the data base 
+exports.createQuestion = function (lectureId, question) {
+  return new Promise((resolve, reject) => {
+    pool.query(`INSERT INTO questions (lectureId, questionName) VALUES ("${lectureId}", "${question}")`, (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
 
-//2
-var prom2 = exports.createThumbData(4, 1, 5);
-prom2.then(results => {
-  console.log(results);
-});
 
-// 3
-asyncTimeout(3000, function(){console.log('done')}).then(function(){console.log('continue')})
+// add answers to the db 
+exports.addAnswers = function (questionId, options) {
+  return new Promise((resolve, reject) => {
+    pool.query(`INSERT INTO answers (questionId, option1, option2, option3, option4) VALUES ("${questionId}",${options[0]}","${options[1]}","${options[2]}","${options[3]}",)`, (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
 
-*/
+
+// pull questions from the db for the lecture 
+
+exports.getQuestions = function (lectureId) {
+  return new Promise((resolve, reject) => {
+    pool.query(`select * from questions where questions.lectureId = "${lectureId}"`, (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
+// pull all answers for questionId 
+
+exports.getAnswers = function (questionId) {
+  return new Promise((resolve, reject) => {
+    pool.query(`select * from answers where answers.questionId = "${questionId}"`, (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
