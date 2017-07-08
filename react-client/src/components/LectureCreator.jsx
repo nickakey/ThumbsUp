@@ -25,16 +25,16 @@ class LectureCreator extends React.Component {
   }
 
   onLectureSave() {
-    if (this.state.showInput){
+    if (this.state.showInput) {
       this.setState({ showInput: false, showAskForMCQ: true });
-        axios({
-          method: 'post',
-          url: '/lecture',
-          params: {
-            name: this.state.name
-          }
-        })
-        .then((res)=>{
+      axios({
+        method: 'post',
+        url: '/lecture',
+        params: {
+          name: this.state.name
+        }
+      })
+        .then((res) => {
           //this.setState({lectureID: res.lectureID});
         })
         .catch((error) => {
@@ -51,7 +51,7 @@ class LectureCreator extends React.Component {
   }
 
   onQuestionSave() {
-    console.log('this is the state on post ', this.state)
+    console.log('this is the state on post ', this.state);
     axios({
       method: 'post',
       url: '/questionsAnswers',
@@ -66,11 +66,11 @@ class LectureCreator extends React.Component {
         }
       }
     })
-    .then((res)=>{
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((res) => {
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     this.setState(() => {
       const newState = this.state;
       newState.showMCQForm = false;
@@ -158,3 +158,4 @@ class LectureCreator extends React.Component {
 }
 
 export default LectureCreator;
+

@@ -35,9 +35,9 @@ CREATE TABLE thumbs (
 
 CREATE TABLE MCQAnswers (
   id INT NOT NULL AUTO_INCREMENT,
-  user_id INT NOT NULL,
-  question_id INT NOT NULL,
-  MCQ_value VARCHAR(5) NOT NULL,
+  userId INT NOT NULL,
+  questioId INT NOT NULL,
+  MCQvalue VARCHAR(5) NOT NULL,
   timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (ID)
 );
@@ -45,7 +45,7 @@ CREATE TABLE MCQAnswers (
 CREATE TABLE questions (
   id INT NOT NULL AUTO_INCREMENT,
   lectureId INT NOT NULL,
-  average_thumb_question DEC(4,2),
+  averageThumbQuestion DEC(4,2),
   MCQ_responses VARCHAR(100),
   PRIMARY KEY (ID)
 );
@@ -53,8 +53,8 @@ CREATE TABLE questions (
 CREATE TABLE lectures (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(50) NOT NULL,
-  average_thumb_lecture DEC(4,2),
-  MCQ_responses VARCHAR(100),
+  averageThumbLecture DEC(4,2),
+  MCQResponses VARCHAR(100),
   PRIMARY KEY (ID)
 );
 
@@ -63,13 +63,11 @@ CREATE TABLE lectures (
  *
  */
 
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Rob", "St. Lezin", "robstlezin@gmail.com", "STUDENT");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Shyan", "Kashani", "shyan.kashani@gmail.com", "STUDENT");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Mike", "Clausen", "michaeljclausen@gmail.com", "INSTRUCTOR");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Chris", "Aaker", "caaker.0@gmail.com", "STUDENT");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Robs", "Rent", "Stlezinrent@gmail.com", "INSTRUCTOR");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Shyan", "Instructor", "shyankashani1@gmail.com", "INSTRUCTOR");
 INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Jake", "Gober", "jgober96@gmail.com", "INSTRUCTOR");
+INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Nick", "Akey", "nicktheflanders@gmail.com", "INSTRUCTOR");
+INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Karina", "Dalca", "karinadalca@gmail.com", "INSTRUCTOR");
+INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Gunpreet", "Singh", "gunpreetskhosa@gmail.com", "INSTRUCTOR");
+
 -- INSERT INTO user
 
 
@@ -90,9 +88,3 @@ INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Jake", "Gob
  * CLEARDB_DATABASE_URL
  * mysql://be6789ba34707e:02c8f71e@us-cdbr-iron-east-03.cleardb.net/heroku_57eb1e9aa24d7a7?reconnect=true
  */
-
-
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Nick", "Akey", "nicktheflanders@gmail.com", "INSTRUCTOR");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Karina", "Dalca", "karinadalca@gmail.com", "INSTRUCTOR");
-INSERT INTO users (first_name, last_name, gmail, user_type) VALUES ("Gunpreet", "Singh", "gunpreetskhosa@gmail.com", "INSTRUCTOR");
-

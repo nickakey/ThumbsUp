@@ -18,18 +18,18 @@ class MCQData {
   }
 
   getAverageThumbValue() {
-    
+
     return 6;
   }
 
   //returns the average thumb value
   getMCQAnswerString() {
-    console.log('here in server/db helper')
+    console.log('here in server/db helper');
     var allAnswers = '';
     for (let student in this.students) {
       if ('answer here', this.students[student].MCQAnswer) {
-        console.log(this.students[student].MCQAnswer)
-        allAnswers = allAnswers.concat(this.students[student].MCQAnswer)
+        console.log(this.students[student].MCQAnswer);
+        allAnswers = allAnswers.concat(this.students[student].MCQAnswer);
       }
     }
     return allAnswers;

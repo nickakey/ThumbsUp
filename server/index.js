@@ -52,7 +52,7 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/lecture', (req, res) => {
-  console.log('post to lecture is happening! ', req.query.name)
+  console.log('post to lecture is happening! ', req.query.name);
   let name = req.query.name;
   db.createNewLecture(name)
     .then(results => {
@@ -90,29 +90,29 @@ app.post('/checkthumbs', (req, res) => {
 
 app.post('/mcq', (req, res) => {
   //console.log('Karel Luwena')
-  let lecture = req.query.lecture_id;
+  let lecture = req.query.lectureID;
   db.createNewQuestion(lecture)
-  //console.log('server-side mcq side')
-  .then(results => {
-    questionId = results.insertId;
-    //console.log('this is the questionId in the MCQ post server-side', questionId)
-    //console.log('this is the MCQDAta', MCQData.MCQData)
-    MCQ = new MCQData.MCQData(lectureId, questionId);
-    //Emit the new question to students here
-    io.emit('posingMCQ', { questionId: questionId });
-    //This will add thumbsdata in the db after the question ends
-    db.asyncTimeout(32000, () => {
-      for (let student in MCQ.students) {
-        //console.log(`${thumbs.students[student].gmail}, ${thumbs.questionId}, ${thumbs.students[student].thumbValue}`);
-        db.createMCQData(MCQ.students[student].gmail, MCQ.questionId, MCQ.students[student].MCQAnswer);
-      }
-      //console.log('here is the qid', questionId, 'and here is the other thang', MCQ.getMCQAnswerString())
-      db.addMCQAnswerForQuestion(questionId, MCQ.getMCQAnswerString());
+    //console.log('server-side mcq side')
+    .then(results => {
+      questionId = results.insertId;
+      //console.log('this is the questionId in the MCQ post server-side', questionId)
+      //console.log('this is the MCQDAta', MCQData.MCQData)
+      MCQ = new MCQData.MCQData(lectureId, questionId);
+      //Emit the new question to students here
+      io.emit('posingMCQ', { questionId: questionId });
+      //This will add thumbsdata in the db after the question ends
+      db.asyncTimeout(32000, () => {
+        for (let student in MCQ.students) {
+          //console.log(`${thumbs.students[student].gmail}, ${thumbs.questionId}, ${thumbs.students[student].thumbValue}`);
+          db.createMCQData(MCQ.students[student].gmail, MCQ.questionId, MCQ.students[student].MCQAnswer);
+        }
+        //console.log('here is the qid', questionId, 'and here is the other thang', MCQ.getMCQAnswerString())
+        db.addMCQAnswerForQuestion(questionId, MCQ.getMCQAnswerString());
+      });
+      //send the response to the teacher
+      res.send({ questionId: questionId });
     });
-    //send the response to the teacher
-    res.send({ questionId: questionId });
-  })
-})
+});
 
 
 app.post('/endLecture', (req, res) => {
@@ -166,9 +166,9 @@ io.on('connection', function (socket) {
       io.emit('allAnswersInString', { allAnswersInString: allAnswersInString });
       console.log(`sending allAnswersInString of ${allAnswersInString}`);
       console.log(`MCQ value for ${socket.username} is ${data.MCQAnswer}`);
-      console.log(`huge class for ${socket.username} is ${MCQ.students[socket.username].MCQAnswer }`);
+      console.log(`huge class for ${socket.username} is ${MCQ.students[socket.username].MCQAnswer}`);
     }
-  })
+  });
 
   //recieve the thumb value from the student
   socket.on('thumbValue', data => {
