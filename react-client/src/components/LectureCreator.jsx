@@ -66,7 +66,7 @@ class LectureCreator extends React.Component {
       }
     })
     .then((res)=>{
-      //console.log('this is the response I get from saving a lecture!! ', res)
+      //res.data.insertId is the question ID if we ever need it!
     })
     .catch((error) => {
       console.log(error);
