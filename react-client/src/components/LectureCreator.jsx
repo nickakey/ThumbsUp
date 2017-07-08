@@ -24,11 +24,23 @@ class LectureCreator extends React.Component {
   }
 
   onLectureSave() {
+    axios({
+      method: 'post',
+      url: '/lecture',
+      params: {
+        name: this.state.name
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+
     if (this.state.questionNames.length) {
+      //this case means that its the second time 
       this.setState({ showInput: true, showAskForMCQ: false, questionNames: [], name: '' });
     } else {
       this.setState({ showInput: false, showAskForMCQ: true });
     }
+
 
     // 1. Save the lecture to DB
     // 2a. Remove input box
