@@ -35,9 +35,10 @@ exports.createNewLecture = function (name) {
   });
 };
 
-exports.createNewQuestion = function (lectureId) {
+exports.createNewQuestion = function (lectureId, question, answer1, answer2, answer3, answer4) {
+  console.log('create new question is happening!!! ')
   return new Promise((resolve, reject) => {
-    pool.query(`INSERT INTO questions (lectureId) VALUES ("${lectureId}")`, (err, results) => {
+    pool.query(`INSERT INTO questions (lectureId, question, answer1, answer2, answer3, answer4) VALUES ("${lectureId}", "${question}", "${answer1}", "${answer2}", "${answer3}", "${answer4}")`, (err, results) => {
       if (err) {
         console.log(err);
       } else {
@@ -243,6 +244,19 @@ exports.getQuestions = function (lectureId) {
     });
   });
 };
+
+exports.getLectures = function () {
+  return new Promise((resolve, reject) => {
+    pool.query(`select * from lectures`, (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
 
 // pull all answers for questionId 
 

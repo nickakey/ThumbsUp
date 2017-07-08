@@ -36,7 +36,7 @@ CREATE TABLE thumbs (
 CREATE TABLE MCQAnswers (
   id INT NOT NULL AUTO_INCREMENT,
   userId INT NOT NULL,
-  questioId INT NOT NULL,
+  questionId INT NOT NULL,
   MCQvalue VARCHAR(5) NOT NULL,
   timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (ID)
@@ -47,6 +47,11 @@ CREATE TABLE questions (
   lectureId INT NOT NULL,
   averageThumbQuestion DEC(4,2),
   MCQ_responses VARCHAR(100),
+  question VARCHAR(150),
+  answer1 VARCHAR(150),
+  answer2 VARCHAR(150),
+  answer3 VARCHAR(150),
+  answer4 VARCHAR(150),
   PRIMARY KEY (ID)
 );
 

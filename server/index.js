@@ -234,40 +234,36 @@ class Student {
 // post question 
 
 //you can delete the thing below this
-// app.post('/questionsAnswers', (req, res) => {
-//   console.log('questions answers is being posted! ', req.query.options)
-//   res.status(200);
-//   res.end();
-// });
-
-app.post('/questions', (req, res) => {
-  var question = req.query.question;
-  var lectureId = req.query.lectureId;
-
-  db.createQuestion(lectureId, question);
-
-  res.status(200);
-  res.end();
-});
-
-// post answers 
-app.post('/answers', (req, res) => {
-  var options = req.query.options;
-  var questionsId = req.query.questionId;
-
-  db.createQuestion(questionsId, options);
-
-  res.status(200);
-  res.end();
+app.post('/questionsAnswers', (req, res) => {
+  const questionObject = JSON.parse(req.query.options);
+  return db.createNewQuestion(questionObject.lectureID, questionObject.question, questionObject.answer1, questionObject.answer2, questionObject.answer3, questionObject.answer4)
+  .then((dbres)=>{
+    console.log('this is the database res ', dbres)
+    res.status(200)
+    .send(dbres)
+    .end();
+  })
+  .catch((err)=>{
+    console.log('this is err! ', err);
+  })
 });
 
 // get questions 
 app.get('/questions', (req, res) => {
   var lectureId = req.body.lectureId;
-
   return db.getQuestions(lectureId)
     .then(results => {
       res.status(200).send(result);
+    });
+});
+
+
+app.get('/lectures', (req, res) => {
+  return db.getLectures()
+    .then(results => {
+      res
+      .status(200)
+      .send(results);
     });
 });
 
