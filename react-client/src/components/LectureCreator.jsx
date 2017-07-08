@@ -36,6 +36,7 @@ class LectureCreator extends React.Component {
         })
         .then((res)=>{
           this.setState({lectureID: res.data.lectureId});
+          this.props.getLecturesFromDB();
         })
         .catch((error) => {
           console.log(error);

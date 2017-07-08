@@ -92,6 +92,7 @@ class Instructor extends React.Component {
           ? <div>
             <div className="col-xs-6 text-center">
               <LectureCreator
+              getLecturesFromDB = {this.getLecturesFromDB.bind(this)}
               />
             </div>
             <div className="col-xs-6 text-center">
