@@ -11,10 +11,11 @@ class LectureCreator extends React.Component {
       showAskForMCQ: false,
       showMCQForm: false,
       showAddAnotherMCQ: false,
+      lectureID: 5,
       tempQuestionName: '',
       questionNames: [],
       questionName: '',
-      questions: {
+      answers: {
         '1': '',
         '2': '',
         '3': '',
@@ -24,18 +25,24 @@ class LectureCreator extends React.Component {
   }
 
   onLectureSave() {
-    if (this.state.questionNames.length) {
-      this.setState({ showInput: true, showAskForMCQ: false, questionNames: [], name: '' });
-    } else {
+    if (this.state.showInput){
       this.setState({ showInput: false, showAskForMCQ: true });
+        axios({
+          method: 'post',
+          url: '/lecture',
+          params: {
+            name: this.state.name
+          }
+        })
+        .then((res)=>{
+          //this.setState({lectureID: res.lectureID});
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      this.setState({ showInput: true, showAskForMCQ: false, questionNames: [], name: '' });
     }
-
-    // 1. Save the lecture to DB
-    // 2a. Remove input box
-    // 2b. Add button that asks if you would like to add multiple choice question
-
-    // 3. if yes, display title form
-    // 4. reset to create new lecture field 
   }
 
 
@@ -43,9 +50,27 @@ class LectureCreator extends React.Component {
     this.setState({ showMCQForm: true, showAskForMCQ: false });
   }
 
-  onQuestionSave(arg1) {
-    //save the questions to the database
-    //AND will hide the questions element, and show the confirm question
+  onQuestionSave() {
+    console.log('this is the state on post ', this.state)
+    axios({
+      method: 'post',
+      url: '/questionsAnswers',
+      params: {
+        options: {
+          lectureID: this.state.lectureID,
+          question: this.state.tempQuestionName,
+          answer1: this.state.answers[1],
+          answer2: this.state.answers[2],
+          answer3: this.state.answers[3],
+          answer4: this.state.answers[4]
+        }
+      }
+    })
+    .then((res)=>{
+    })
+    .catch((error) => {
+      console.log(error);
+    });
     this.setState(() => {
       const newState = this.state;
       newState.showMCQForm = false;
@@ -54,7 +79,7 @@ class LectureCreator extends React.Component {
       return newState;
     });
     this.setState({
-      questions: {
+      answers: {
         '1': '',
         '2': '',
         '3': '',
@@ -71,7 +96,7 @@ class LectureCreator extends React.Component {
     } else {
       this.setState(() => {
         const newState = this.state;
-        newState.questions[form] = event.target.value;
+        newState.answers[form] = event.target.value;
         return newState;
       });
     }
@@ -104,7 +129,7 @@ class LectureCreator extends React.Component {
             </div>
                 : this.state.showMCQForm === true
                   ? <div>
-                    <MCQForm questions={this.state.questions} onQuestionSave={this.onQuestionSave.bind(this)} handleChange={this.handleChange.bind(this)} />
+                    <MCQForm answers={this.state.answers} onQuestionSave={this.onQuestionSave.bind(this)} handleChange={this.handleChange.bind(this)} />
                   </div>
                   : this.state.showAddAnotherMCQ === true
                     ? <div>

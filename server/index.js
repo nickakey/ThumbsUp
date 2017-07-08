@@ -52,6 +52,7 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/lecture', (req, res) => {
+  console.log('post to lecture is happening! ', req.query.name)
   let name = req.query.name;
   db.createNewLecture(name)
     .then(results => {
@@ -232,9 +233,16 @@ class Student {
 
 // post question 
 
+//you can delete the thing below this
+// app.post('/questionsAnswers', (req, res) => {
+//   console.log('questions answers is being posted! ', req.query.options)
+//   res.status(200);
+//   res.end();
+// });
+
 app.post('/questions', (req, res) => {
-  var question = req.body.question;
-  var lectureId = req.body.lectureId;
+  var question = req.query.question;
+  var lectureId = req.query.lectureId;
 
   db.createQuestion(lectureId, question);
 
@@ -244,8 +252,8 @@ app.post('/questions', (req, res) => {
 
 // post answers 
 app.post('/answers', (req, res) => {
-  var options = req.body.options;
-  var questionsId = req.body.questionId;
+  var options = req.query.options;
+  var questionsId = req.query.questionId;
 
   db.createQuestion(questionsId, options);
 

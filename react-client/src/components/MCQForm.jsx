@@ -22,25 +22,25 @@ class MCQForm extends React.Component {
         />
         <input
           type="text"
-          value={this.props.questions[1]}
+          value={this.props.answers[1]}
           placeholder="Answer 1"
           onChange={this.props.handleChange.bind(this, '1')}
         />
         <input
           type="text"
-          value={this.props.questions[2]}
+          value={this.props.answers[2]}
           placeholder="Answer 2"
           onChange={this.props.handleChange.bind(this, '2')}
         />
         <input
           type="text"
-          value={this.props.questions[3]}
+          value={this.props.answers[3]}
           placeholder="Answer 3"
           onChange={this.props.handleChange.bind(this, '3')}
         />
         <input
           type="text"
-          value={this.props.questions[4]}
+          value={this.props.answers[4]}
           placeholder="Answer 4"
           onChange={this.props.handleChange.bind(this, '4')}
           className="question-form-bottom"
