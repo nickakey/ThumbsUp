@@ -267,14 +267,14 @@ app.get('/questionsByLectureName', (req, res) => {
     return db.getQuestions(results[0].id)
   })
   .then(results => {
-    console.log('these are the NEXT results! ', results)
+    res
+    .status(200)
+    .send(results);
   })
 
 
 
-    // res
-    //   .status(200)
-    //   .send(results);
+
 });
 
 

@@ -27,7 +27,33 @@ class App extends React.Component {
       lectureName: '',
       questionType: '',
       MCQAnswer: '',
-      submitCount: 0
+      submitCount: 0,
+      questions: [
+        {
+          title: 'What is Nick\'s favorite food?',
+          answer1: 'Gus\'s Chicken Tenders',
+          answer2: 'Chicken Parmesian',
+          answer3: 'Gnochi with red sauce',
+          answer4: 'Grilled Cheese',
+          correctAnswer: 1
+        },
+        {
+          title: 'What is Jake\'s favorite food?',
+          answer1: 'Salmon',
+          answer2: 'Steak',
+          answer3: 'Boston Cream Pie',
+          answer4: 'Mousse',
+          correctAnswer: 1
+        },
+        {
+          title: 'What is the best pie?',
+          answer1: 'Apple',
+          answer2: 'Cherry',
+          answer3: 'Key Lime',
+          answer4: 'Sweet potato',
+          correctAnswer: 1
+        }
+      ],
     };
 
   }
@@ -70,8 +96,15 @@ class App extends React.Component {
     }).then((result) => {
       console.log('this is the result from clicking a lecture!!! ', result)
       this.setState({
+        questions: null
+      })
+      if(result.data.length > 0){
+        this.setState({
+          questions: result.data
+        })
+      }
+      this.setState({
         lectureStatus: 'lectureStarted',
-        lectureId: lectureId,
         lectureName: lectureName
       });
     });
@@ -285,6 +318,7 @@ class App extends React.Component {
                 startMCQ={this.startMCQ.bind(this)}
               />
               : <Instructor
+                questions={this.state.questions}
                 setLectureId={this.state.setLectureId}
                 thumbValue={this.state.thumbValue}
                 lectureId={this.state.lectureId}

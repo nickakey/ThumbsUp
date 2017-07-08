@@ -63,20 +63,26 @@ class LectureButtons extends React.Component {
 					</div>
         </div>
         <div className="col-xs-12 text-center">
-          {this.props.questions.map((el, i) => {
-            return (
-              <div
-                className="btn question-option"
-                key={i}
-                onClick={() => {
-                  this.onMCQ.call(this);
-                  this.props.changeQuestion(el);
+          {this.props.questions !== null
+            ? <div>
+                {this.props.questions.map((el, i) => {
+                  return (
+                    <div
+                      className="btn question-option"
+                      key={i}
+                      onClick={() => {
+                        this.onMCQ.call(this);
+                        this.props.changeQuestion(el);
+                      }
+                      }>
+                      Ask: {el.question}
+                    </div>
+                    );
+                  })
                 }
-                }>
-                Ask: {el.title}
               </div>
-            );
-          })}
+             : <div></div>
+          }
         </div>
         <div className="col-xs-12 text-center">
           <div
