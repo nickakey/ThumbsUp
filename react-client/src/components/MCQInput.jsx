@@ -23,10 +23,12 @@ class ThumbInput extends React.Component {
   answerSubmit(event) {
     event.preventDefault();
     this.setState({
-      submitted: true
-    });
-    this.props.sendAnswer();
-    console.log('here is the submission event', this.state.answer);
+
+      submitted:true
+    })
+    this.props.sendAnswer(this.state.answer)
+    console.log('here is the submission event', this.state.answer)
+
 
   }
 

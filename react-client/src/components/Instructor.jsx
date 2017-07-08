@@ -42,9 +42,18 @@ class Instructor extends React.Component {
     };
     socket.on('averageThumbValue', (data) => {
       if (props.view === 'instructor') {
+
         props.changeThumbValue(data.averageThumbValue);
       }
     });
+
+    socket.on('allAnswersInString', (data) => {
+      if (props.view === 'instructor') {
+        //console.log('data', data);
+        props.changeMCQ(data.allAnswersInString);
+      }
+    });
+    //console.log('this is the q type', this.props.questionType)
   }
 
   render() {
@@ -67,26 +76,29 @@ class Instructor extends React.Component {
               questions={this.state.questions}
               lectureId={this.props.lectureId}
               startThumbsCheck={this.props.startThumbsCheck}
+              startMCQ={this.props.startMCQ}
               endLecture={this.props.endLecture}
             />
-            : this.props.questionType !== 'thumbs'
-              ? <ThumbsChecker
-                startLecture={this.props.startLecture}
-                lectureId={this.props.lectureId}
-                countdown={this.props.countdown}
-                thumbValue={this.props.thumbValue}
-                clearThumbsCheck={this.props.clearThumbsCheck}
-              />
-              : <MCQChecker
-                questions={this.state.questions}
-                startLecture={this.props.startLecture}
-                lectureId={this.props.lectureId}
-                countdown={this.props.countdown}
-                thumbValue={this.props.thumbValue}
-                startThumbsCheck={this.props.startThumbsCheck}
-                clearThumbsCheck={this.props.clearThumbsCheck}
-                submitCount={this.props.submitCount}
-              />
+
+          : this.props.questionType === 'thumbs'
+          ? <ThumbsChecker
+            startLecture={this.props.startLecture}
+            lectureId={this.props.lectureId}
+            countdown={this.props.countdown}
+            thumbValue={this.props.thumbValue}
+            clearThumbsCheck={this.props.clearThumbsCheck}
+          />
+          : <MCQChecker
+            MCQAnswer = {this.props.MCQAnswer}
+            startLecture={this.props.startLecture}
+            lectureId={this.props.lectureId}
+            countdown={this.props.countdown}
+            thumbValue={this.props.thumbValue}
+            clearThumbsCheck={this.props.clearThumbsCheck}
+            submitCount={this.props.submitCount}
+            questions={this.state.questions}
+          />
+
         }
       </div>
     );
