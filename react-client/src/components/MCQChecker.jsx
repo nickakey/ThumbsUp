@@ -11,8 +11,15 @@ class MCQChecker extends React.Component {
     };
   }
 
+
   render() {
     return (
+    	<div>
+    	     <div> Submitted Answers: 
+			{this.state.numResponses === 0 && <h3>{this.props.MCQAnswer}</h3>} <br/>
+			</div>
+
+			
 			<div>
 				{this.props.countdown === 0
 					? <div>
@@ -32,6 +39,8 @@ class MCQChecker extends React.Component {
 						<p>Time Remaining: {this.props.countdown}</p>
 					</div>
 				}
+
+			</div>
 			</div>
     );
   }

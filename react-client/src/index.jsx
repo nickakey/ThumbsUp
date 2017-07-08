@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Login from './components/Login.jsx';
 import Student from './components/Student.jsx';
 import Instructor from './components/Instructor.jsx';
+import LectuteButtons from './components/LectureButtons.jsx'
 import axios from 'axios';
 
 const io = require('socket.io-client');
@@ -21,12 +22,14 @@ class App extends React.Component {
       lectureId: '',
       questionId: '',
       thumbValue: 2,
-      countdown: 30,
+      countdown: 45,
       givenName: '',
       lectureName: '',
       questionType: '',
+      MCQAnswer: '',
       submitCount: 0
     };
+
   }
 
   componentDidMount() {
@@ -91,17 +94,33 @@ class App extends React.Component {
   setCountdownInterval() {
     countdownInterval = setInterval(() => {
       this.state.countdown === 0
-        ? this.clearCountdownInterval()
-        : this.setState({ countdown: this.state.countdown - 1 }, () => {
-          console.log('this.state.countdown', this.state.countdown);
-          if (this.state.view === 'student') {
-            socket.emit('thumbValue', { thumbValue: this.state.thumbValue });
-          }
-        });
-    }, 1000);
+
+      ? this.clearCountdownInterval()
+      : this.setState({ countdown: this.state.countdown - 1 }, () => {
+        //console.log('this.state.countdown', this.state.countdown);
+        if (this.state.view === 'student') {
+          socket.emit('thumbValue', { thumbValue: this.state.thumbValue });
+        }
+      });
+    }, 1000)
   }
 
-  clearCountdownInterval() {
+
+  setCountdownIntervalMCQ () {
+    countdownInterval = setInterval (() => {
+      this.state.countdown === 0
+      ? this.clearCountdownInterval()
+      : this.setState({ countdown: this.state.countdown - 1 }, () => {
+        //console.log('this.state.countdown', this.state.countdown);
+        if (this.state.view === 'student') {
+          socket.emit('MCQAnswer', { MCQAnswer: this.state.MCQAnswer });
+        }
+      });
+    }, 1000)
+  }
+
+  clearCountdownInterval () {
+
     clearInterval(countdownInterval);
     if (this.state.view === 'student') {
       this.setState({
@@ -140,11 +159,20 @@ class App extends React.Component {
       thumbValue: value
     });
   }
+   changeMCQ (value) {
+    this.setState({
+      MCQAnswer: value
+    })
+  }
+
+
 
   startMCQ(questionId) {
     this.setState({
-      lectureStatus: 'checkingThumbs',
-      questionType: 'mcq',
+
+      lectureStatus: 'posingMCQ',
+      questionType:'mcq',
+
       questionId: questionId
     }, this.setCountdownInterval);
   }
@@ -156,12 +184,20 @@ class App extends React.Component {
     });
   }
 
-  sendAnswer() {
+
+  sendAnswer (value) {
     this.setState({
-      submitCount: 1
-    });
-    console.log('sendAnswer got called');
-  }
+      submitCount: 1,
+      MCQAnswer: value
+    }, ()=>{
+      if (this.state.view === 'student') {
+        socket.emit('MCQAnswer', { MCQAnswer: this.state.MCQAnswer });
+      }
+    })}
+    //console.log('sendAnswer got called' )
+
+
+
 
   clearMCQ() {
     this.setState({
@@ -171,11 +207,13 @@ class App extends React.Component {
     });
   }
 
+
   changeMCQ(value) {
     this.setState({
       thumbValue: value
     });
   }
+
 
 
   render() {
@@ -191,48 +229,56 @@ class App extends React.Component {
             </div>
           </div>
         </nav>
+
         <div className="container-fluid main">
+
           {this.state.view === 'login'
             ? <Login
               onSignIn={this.onSignIn.bind(this)}
             />
             : this.state.view === 'student'
               ? <Student
-                thumbValue={this.state.thumbValue}
-                changeThumbValue={this.changeThumbValue.bind(this)}
-                startThumbsCheck={this.startThumbsCheck.bind(this)}
-                startLecture={this.startLecture.bind(this)}
-                lectureStatus={this.state.lectureStatus}
-                countdown={this.state.countdown}
-                view={this.state.view}
-                endLectureStudent={this.endLectureStudent.bind(this)}
-                givenName={this.state.givenName}
-                lectureName={this.state.lectureName}
-                questionType={this.state.questionType}
-                sendAnswer={this.sendAnswer.bind(this)}
-              />
+                  thumbValue={this.state.thumbValue}
+                  MCQAnswer = {this.state.MCQAnswer}
+                  changeThumbValue={this.changeThumbValue.bind(this)}
+                  startThumbsCheck={this.startThumbsCheck.bind(this)}
+                  startLecture={this.startLecture.bind(this)}
+                  lectureStatus={this.state.lectureStatus}
+                  countdown={this.state.countdown}
+                  view={this.state.view}
+                  endLectureStudent={this.endLectureStudent.bind(this)}
+                  givenName={this.state.givenName}
+                  lectureName={this.state.lectureName}
+                  questionType={this.state.questionType}
+                  sendAnswer ={this.sendAnswer.bind(this)}
+                  startMCQ={this.startMCQ.bind(this)}
+                />
               : <Instructor
-                thumbValue={this.state.thumbValue}
-                lectureId={this.state.lectureId}
-                lectureStatus={this.state.lectureStatus}
-                startLecture={this.startLecture.bind(this)}
-                endLecture={this.endLecture.bind(this)}
-                startThumbsCheck={this.startThumbsCheck.bind(this)}
-                startMCQ={this.startMCQ.bind(this)}
-                countdown={this.state.countdown}
-                changeThumbValue={this.changeThumbValue.bind(this)}
-                clearThumbsCheck={this.clearThumbsCheck.bind(this)}
-                view={this.state.view}
-                givenName={this.state.givenName}
-                lectureName={this.state.lectureName}
-                questionType={this.state.questionType}
-                submitCount={this.state.submitCount}
-              />
-          }
+                  thumbValue={this.state.thumbValue}
+                  lectureId={this.state.lectureId}
+                  lectureStatus={this.state.lectureStatus}
+                  startLecture={this.startLecture.bind(this)}
+                  endLecture={this.endLecture.bind(this)}
+                  startThumbsCheck={this.startThumbsCheck.bind(this)}
+                  startMCQ={this.startMCQ.bind(this)}
+                  countdown={this.state.countdown}
+                  changeThumbValue={this.changeThumbValue.bind(this)}
+                  changeMCQ={this.changeMCQ.bind(this)}
+                  clearThumbsCheck={this.clearThumbsCheck.bind(this)}
+                  view={this.state.view}
+                  givenName={this.state.givenName}
+                  lectureName={this.state.lectureName}
+                  questionType={this.state.questionType}
+                  submitCount={this.state.submitCount}
+                  MCQAnswer = {this.state.MCQAnswer}
+                />
+              }
+
         </div>
       </div>
-    );
+
+    );}
   }
-}
+
 
 ReactDOM.render(<App />, document.getElementById('app'));
