@@ -9,6 +9,8 @@ class MCQChecker extends React.Component {
     this.state = {
       currentOptions: this.props.currentOptions
     };
+    console.log('this is the state MCQChecker ', this.state)
+
   }
 
 
@@ -33,6 +35,7 @@ class MCQChecker extends React.Component {
 								clearThumbsCheck={this.props.clearThumbsCheck}
 								submitCount={this.props.submitCount}
 								startThumbsCheck={this.props.startThumbsCheck}
+                currentId={this.props.currentId}
 							/>
 						</div>
 						: <div>
