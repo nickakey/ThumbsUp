@@ -250,10 +250,40 @@ app.post('/questionsAnswers', (req, res) => {
 
 // get questions 
 app.get('/questions', (req, res) => {
-  var lectureId = req.body.lectureId;
+  console.log(req.query)
+  console.log(req.query.url)
+  console.log(req.url)
+  var lectureId = req.query.lectureId;
   return db.getQuestions(lectureId)
     .then(results => {
       res.status(200).send(result);
+    });
+});
+
+app.get('/questionsByLectureName', (req, res) => {
+  return db.getLectureId(req.query.lectureName)
+  .then(results => {
+    console.log('this should be a lecture id ', results[0].id)
+    return db.getQuestions(results[0].id)
+  })
+  .then(results => {
+    res
+    .status(200)
+    .send(results);
+  })
+
+
+
+
+});
+
+
+app.get('/lectures', (req, res) => {
+  return db.getLectures()
+    .then(results => {
+      res
+      .status(200)
+      .send(results);
     });
 });
 

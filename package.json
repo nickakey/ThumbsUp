@@ -24,7 +24,7 @@
     "file-loader": "^0.11.2",
     "google-auth-library": "^0.10.0",
     "image-webpack-loader": "^3.3.1",
-    "jquery": "^3.1.1",
+    "jquery": "^3.2.1",
     "mysql": "^2.13.0",
     "node": "0.0.0",
     "rc-slider": "^8.1.3",
