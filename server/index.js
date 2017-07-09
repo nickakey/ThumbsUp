@@ -66,7 +66,6 @@ app.post('/lecture', (req, res) => {
 });
 
 app.post('/checkthumbs', (req, res) => {
-
   let lecture = req.query.lectureId;
   db.createNewQuestion(lecture)
     .then(results => {
@@ -101,7 +100,8 @@ app.post('/mcq', (req, res) => {
       //Emit the new question to students here
       io.emit('posingMCQ', { questionId: questionId });
       //This will add thumbsdata in the db after the question ends
-      db.asyncTimeout(32000, () => {
+      db.asyncTimeout(10000, () => {
+        console.log('this is the OBJECT after the set timeout!! ', MCQ)
         for (let student in MCQ.students) {
           //console.log(`${thumbs.students[student].gmail}, ${thumbs.questionId}, ${thumbs.students[student].thumbValue}`);
           db.createMCQData(MCQ.students[student].gmail, MCQ.questionId, MCQ.students[student].MCQAnswer);
