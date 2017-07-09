@@ -37,7 +37,7 @@ class LectureButtons extends React.Component {
         lectureID: this.props.lectureId
       }
     }).then((response) => {
-      console.log('here in MCQ stuff then');
+      console.log('here in MCQ stuff then',response.data.questionId);
       this.props.startMCQ(response.data.questionId);
     }).catch((error) => {
       console.log(error);

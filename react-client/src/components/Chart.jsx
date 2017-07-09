@@ -21,8 +21,10 @@ class Chart extends React.Component {
           ]
         },
       ],
-      currentQuestion: props.currentQuestion
+      currentQuestion: props.currentQuestion,
+      currentId: props.currentId
     };
+    console.log(this.state.currentId);
   }
 
   render() {

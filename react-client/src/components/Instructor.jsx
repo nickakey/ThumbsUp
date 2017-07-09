@@ -15,7 +15,9 @@ class Instructor extends React.Component {
     this.state = {
       currentQuestion: '',
       currentOptions: [],
-      lectures: null
+      currentId: '',
+      lectures: null,
+      questions: this.props.questions
     };
 
     socket.on('averageThumbValue', (data) => {
@@ -31,13 +33,17 @@ class Instructor extends React.Component {
         props.changeMCQ(data.allAnswersInString);
       }
     });
+
+    console.log('this is questions in instruvtor ', this.state.questions)
+    console.log('this is current question in instructor ', this.state.currentQuestion)
     //console.log('this is the q type', this.props.questionType)
   }
 
   changeQuestion(e) {
     this.setState({
       currentQuestion: e.title,
-      currentOptions: [e.answer1, e.answer2, e.answer3, e.answer4]
+      currentOptions: [e.answer1, e.answer2, e.answer3, e.answer4],
+      currentId: e.id
     });
   }
 
@@ -104,6 +110,8 @@ class Instructor extends React.Component {
             clearThumbsCheck={this.props.clearThumbsCheck}
             submitCount={this.props.submitCount}
             questions={this.state.questions}
+            currentOptions={this.state.currentOptions}
+            currentId={this.state.currentId}
           />
         }
       </div>
