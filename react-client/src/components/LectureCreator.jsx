@@ -52,7 +52,6 @@ class LectureCreator extends React.Component {
   }
 
   onQuestionSave() {
-    console.log('what is the lectureID ? ', this.state.lectureID)
     axios({
       method: 'post',
       url: '/questionsAnswers',
@@ -160,4 +159,3 @@ class LectureCreator extends React.Component {
 }
 
 export default LectureCreator;
-

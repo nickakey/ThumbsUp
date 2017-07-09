@@ -121,24 +121,6 @@ exports.getMCQAnswersForQuestionsInLecture = function (lectureId) {
   });
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Section
-*/
-
 exports.createThumbData = function (gmail, questionId, thumbsValue) {
   return new Promise((resolve, reject) => {
     pool.query(`INSERT INTO thumbs (user_id, question_id, thumb_value) VALUES ((SELECT id FROM users WHERE gmail="${gmail}"), ${questionId}, ${thumbsValue})`, (err, results) => {

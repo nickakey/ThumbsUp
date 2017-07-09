@@ -287,6 +287,16 @@ app.get('/lectures', (req, res) => {
     });
 });
 
+
+app.get('/lectures', (req, res) => {
+  return db.getLectures()
+    .then(results => {
+      res
+      .status(200)
+      .send(results);
+    });
+});
+
 // get answers 
 
 app.get('/answers', (req, res) => {
@@ -297,4 +307,3 @@ app.get('/answers', (req, res) => {
       res.status(200).send(result);
     });
 });
-

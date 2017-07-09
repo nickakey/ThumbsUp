@@ -1,9 +1,9 @@
-DROP DATABASE IF EXISTS thumbscheck;
+/* DROP DATABASE IF EXISTS thumbscheck;
 
 CREATE DATABASE IF NOT EXISTS thumbscheck;
 
 USE thumbscheck;
-
+ */
 /*  Execute this file from the command line by typing:
  *    mysql -u root < schema.sql
  *  to create the database and the tables.
