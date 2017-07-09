@@ -132,6 +132,10 @@ class App extends React.Component {
     this.setState({lectureId: id})
   }
 
+  closeChart(){
+    console.log('close chart is being calle!!!')
+  }
+
   endLecture() {
     let lectureId = this.state.lectureId;
     console.log(lectureId);
@@ -319,6 +323,7 @@ class App extends React.Component {
                 startMCQ={this.startMCQ.bind(this)}
               />
               : <Instructor
+                closeChart={this.closeChart.bind(this)}
                 questions={this.state.questions}
                 setLectureId={this.state.setLectureId}
                 thumbValue={this.state.thumbValue}

@@ -29,7 +29,7 @@ class Chart extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="col-xs-12 text-center">
         <BarChart
           data={this.state.barData}
           width={500}
@@ -38,6 +38,11 @@ class Chart extends React.Component {
           xAxisLabel="Option"
           yAxisLabel="Number"
         />
+        <div
+            className="btn btn-danger btn-center"
+            onClick={this.props.closeChart}>
+            Close
+        </div>
       </div>
     );
   }

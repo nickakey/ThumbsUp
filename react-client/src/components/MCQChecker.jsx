@@ -26,6 +26,7 @@ class MCQChecker extends React.Component {
 					{this.props.countdown === 0
 						? <div>
 							<Chart
+                closeChart={this.props.closeChart}
 								currentQuestion={this.props.currentQuestion}
 								barData={this.state.barData}
 								startLecture={this.props.startLecture}

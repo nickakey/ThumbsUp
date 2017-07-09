@@ -102,6 +102,7 @@ class Instructor extends React.Component {
             clearThumbsCheck={this.props.clearThumbsCheck}
           />
           : <MCQChecker
+            closeChart = {this.props.closeChart}
             MCQAnswer = {this.props.MCQAnswer}
             startLecture={this.props.startLecture}
             lectureId={this.props.lectureId}
