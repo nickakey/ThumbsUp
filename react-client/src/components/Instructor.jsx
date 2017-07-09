@@ -93,27 +93,27 @@ class Instructor extends React.Component {
               endLecture={this.props.endLecture}
               changeQuestion={this.changeQuestion.bind(this)}
             />
-          : this.props.questionType === 'thumbs'
-          ? <ThumbsChecker
-            startLecture={this.props.startLecture}
-            lectureId={this.props.lectureId}
-            countdown={this.props.countdown}
-            thumbValue={this.props.thumbValue}
-            clearThumbsCheck={this.props.clearThumbsCheck}
-          />
-          : <MCQChecker
-            closeChart = {this.props.closeChart}
-            MCQAnswer = {this.props.MCQAnswer}
-            startLecture={this.props.startLecture}
-            lectureId={this.props.lectureId}
-            countdown={this.props.countdown}
-            thumbValue={this.props.thumbValue}
-            clearThumbsCheck={this.props.clearThumbsCheck}
-            submitCount={this.props.submitCount}
-            questions={this.state.questions}
-            currentOptions={this.state.currentOptions}
-            currentId={this.state.currentId}
-          />
+            : this.props.questionType === 'thumbs'
+              ? <ThumbsChecker
+                startLecture={this.props.startLecture}
+                lectureId={this.props.lectureId}
+                countdown={this.props.countdown}
+                thumbValue={this.props.thumbValue}
+                clearThumbsCheck={this.props.clearThumbsCheck}
+              />
+              : <MCQChecker
+                closeChart = {this.props.closeChart}
+                MCQAnswer = {this.props.MCQAnswer}
+                startLecture={this.props.startLecture}
+                lectureId={this.props.lectureId}
+                countdown={this.props.countdown}
+                thumbValue={this.props.thumbValue}
+                clearThumbsCheck={this.props.clearThumbsCheck}
+                submitCount={this.props.submitCount}
+                questions={this.state.questions}
+                currentOptions={this.state.currentOptions}
+                currentId={this.state.currentId}
+              />
         }
       </div>
     );

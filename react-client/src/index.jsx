@@ -133,7 +133,8 @@ class App extends React.Component {
   }
 
   closeChart(){
-    this.setState({questionType: ''})
+    console.log('close chart is firing ')
+    this.setState({lectureStatus: 'lectureStarted'})
   }
 
   endLecture() {
