@@ -133,7 +133,7 @@ class App extends React.Component {
   }
 
   closeChart(){
-    console.log('close chart is being calle!!!')
+    this.setState({questionType: ''})
   }
 
   endLecture() {
