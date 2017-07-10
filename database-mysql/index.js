@@ -256,8 +256,9 @@ exports.getLectureId = function (lectureName) {
 // pull all answers for questionId 
 
 exports.getAnswers = function (questionId) {
+  //console.log(`select * from MCQ answers where answers.questionId = "${questionId}"`)
   return new Promise((resolve, reject) => {
-    pool.query(`select * from answers where answers.questionId = "${questionId}"`, (err, results) => {
+    pool.query(`select * from MCQAnswers`, (err, results) => {
       if (err) {
         console.log(err);
       } else {
